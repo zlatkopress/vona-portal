@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport - VONA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primarna-crvena: #e30613; --tamna-teget: #0f172a; --cista-bela: #ffffff; --siva-linija: #e2e8f0; --font-naslovi: 'Archivo', sans-serif; --font-tekst: 'Inter', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-tekst); background-color: var(--cista-bela); color: var(--tamna-teget); padding-bottom: 60px; }
+        a { text-decoration: none; color: inherit; }
+        
+        .brand-section { background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&q=80&w=1600'); background-size: cover; background-position: center 30%; text-align: center; padding: 40px 20px; border-bottom: 1px solid var(--siva-linija); }
+        .logo-main { font-family: var(--font-naslovi); font-size: 50px; font-weight: 900; color: var(--cista-bela); text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .logo-subtitle { font-family: var(--font-naslovi); font-size: 13px; font-weight: 700; letter-spacing: 4px; color: var(--cista-bela); text-transform: uppercase; margin-top: 5px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
+        
+        nav { background-color: var(--cista-bela); border-bottom: 3px solid var(--primarna-crvena); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .nav-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: center; }
+        nav ul { display: flex; list-style: none; overflow-x: auto; white-space: nowrap; }
+        nav ul li a { font-family: var(--font-naslovi); display: block; padding: 15px 20px; font-size: 15px; font-weight: 700; text-transform: uppercase; }
+        nav ul li a:hover, nav ul li.active a { color: var(--primarna-crvena); }
+
+        .page-title { max-width: 1280px; margin: 30px auto 10px auto; padding: 0 20px; font-family: var(--font-naslovi); font-size: 28px; text-transform: uppercase; border-left: 5px solid var(--primarna-crvena); padding-left: 15px; }
+
+        .category-grid { max-width: 1280px; margin: 20px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        @media (max-width: 900px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .category-grid { grid-template-columns: 1fr; } }
+
+        .news-card { border: 1px solid var(--siva-linija); display: flex; flex-direction: column; background: var(--cista-bela); transition: transform 0.2s; }
+        .news-card:hover { transform: translateY(-3px); }
+        .news-card-img { height: 200px; width: 100%; object-fit: cover; }
+        .news-card-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+        .news-card-time { font-family: var(--font-naslovi); font-size: 12px; font-weight: 800; color: var(--primarna-crvena); }
+        .news-card-title { font-family: var(--font-naslovi); font-size: 18px; font-weight: 800; line-height: 1.3; }
+        .news-card:hover .news-card-title { color: var(--primarna-crvena); }
+
+        .pagination-container { display: flex; justify-content: center; margin-top: 40px; width: 100%; }
+        .pagination-btn { background-color: var(--primarna-crvena); color: var(--cista-bela); border: none; padding: 12px 30px; font-family: var(--font-naslovi); font-size: 15px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: background-color 0.2s; }
+        .pagination-btn:hover { background-color: var(--tamna-teget); }
+    </style>
+</head>
+<body>
+
+    <div class="brand-section">
+        <a href="index.html">
+            <div class="logo-main">Vona</div>
+            <div class="logo-subtitle">Vojvođanska Novinska Agencija</div>
+        </a>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <ul>
+                <li><a href="drustvo.html">Društvo</a></li>
+                <li><a href="politika.html">Politika</a></li>
+                <li><a href="biznis.html">Biznis</a></li>
+                <li><a href="kultura.html">Kultura</a></li>
+                <li class="active"><a href="sport.html">Sport</a></li>
+                <li><a href="hronika.html">Hronika</a></li>
+                <li><a href="svet.html">Svet</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 class="page-title">Kategorija: Sport</h1>
+
+    <main class="category-grid">
+        
+        <!-- Red 1 - Vest 1 -->
+        <article class="news-card">
+            <a href="#">
+                <img class="news-card-img" src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=500" alt="Sport 1">
+                <div class="news-card-body">
+                    <span class="news-card-time">Danas, 19:55</span>
+                    <h2 class="news-card-title">Spektakularna završnica prvenstva: Odlučujući bodovi osvojeni u poslednjoj sekundi meča</h2>
+                </div>
+            </a>
+        </article>
+
+        <!-- Red 1 - Vest 2 -->
+        <article class="news-card">
+            <a href="#">
+                <img class="news-card-img" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500" alt="Sport 2">
+                <div class="news-card-body">
+                    <span class="news-card-time">Danas, 16:12</span>
+                    <h2 class="news-card-title">Regionalni derbi privukao rekordan broj navijača: Fantastična atmosfera na tribinama</h2>
+                </div>
+            </a>
+        </article>
+
+        <!-- Red 1 - Vest 3 -->
+        <article class="news-card">
+            <a href="#">
+                <img class="news-card-img" src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=500" alt="Sport 3">
+                <div class="news-card-body">
+                    <span class="news-card-time">Danas, 10:20</span>
+                    <h2 class="news-card-title">Naši mladi atletičari donose tri zlatne medalje sa evropskog otvorenog kupa</h2>
+                </div>
+            </a>
+        </article>
+
+        <!-- Red 2 - Vest 4 -->
+        <article class="news-card">
+            <a href="#">
+                <img class="news-card-img" src="https://images.unsplash.com/photo-1544698310-74ea9d1c8258?w=500" alt="Sport 4">
+                <div class="news-card-body">
+                    <span class="news-card-time">Juče, 17:40</span>
+                    <h2 class="news-card-title">Počele pripreme za tradicionalni međunarodni teniski turnir u regionu</h2>
+                </div>
+            </a>
+        </article>
+
+        <!-- Red 2 - Vest 5 -->
+        <article class="news-card">
+            <a href="#">
+                <img class="news-card-img" src="https://images.unsplash.com/photo-1519766304817-4f37bda74a27?w=500" alt="Sport 5">
+                <div class="news-card-body">
+                    <span class="news-card-time">Juče, 09:15</span>
+                    <h2 class="news-card-title">Ulaganje u bazični sport: Otvoreni novi moderni tereni za košarku i mali fudbal</h2>
+                </div>
+            </a>
+        </article>
+
+    </main>
+
+    <div class="pagination-container">
+        <button class="pagination-btn" onclick="alert('Nema starijih vesti u bazi.')">Sledeća strana</button>
+    </div>
+
+</body>
+</html>
