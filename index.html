@@ -4,173 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VONA - Vojvođanska Novinska Agencija</title>
-    
-    <!-- Google Fontovi: Moderni, oštri sans-serif pogodan za novinske portale -->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- IDENTITY (Potrebno za CMS) -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
     <style>
-        /* GLOBALNE PROMENLJIVE */
-        :root {
-            --primarna-crvena: #e30613;
-            --tamna-teget: #0f172a;
-            --cista-bela: #ffffff;
-            --pozadina-sajta: #ffffff;
-            --siva-podloga: #f8fafc;
-            --siva-tekst: #475569;
-            --siva-linija: #e2e8f0;
-            --font-naslovi: 'Archivo', sans-serif;
-            --font-tekst: 'Inter', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: var(--font-tekst);
-            background-color: var(--pozadina-sajta);
-            color: var(--tamna-teget);
-            line-height: 1.4;
-            top: 0 !important;
-        }
-
-        /* PRIKAZUJE GOOGLE REZERVNI MENI SAMO AKO JE POTREBNO, ALI SKRIVA RUŽNU TRAKU */
+        :root { --primarna-crvena: #e30613; --tamna-teget: #0f172a; --cista-bela: #ffffff; --pozadina-sajta: #ffffff; --siva-podloga: #f8fafc; --siva-tekst: #475569; --siva-linija: #e2e8f0; --font-naslovi: 'Archivo', sans-serif; --font-tekst: 'Inter', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-tekst); background-color: var(--pozadina-sajta); color: var(--tamna-teget); line-height: 1.4; top: 0 !important; }
         .goog-te-banner-frame, .goog-te-balloon-frame, #goog-gt-tt { display: none !important; }
         .goog-te-gadget { font-size: 0px !important; }
         .goog-te-gadget span { display: none !important; }
-        body { top: 0 !important; }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.2s ease;
-        }
-
-        /* GORNJA SIVA TRAKA ZA JEZIKE */
-        .top-language-bar {
-            background-color: #f1f5f9;
-            border-bottom: 1px solid var(--siva-linija);
-            padding: 8px 20px;
-        }
-
-        .lang-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: flex-end;
-            gap: 6px;
-        }
-
-        .lang-btn {
-            background: var(--cista-bela);
-            border: 1px solid var(--siva-linija);
-            padding: 4px 10px;
-            font-family: var(--font-naslovi);
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            border-radius: 3px;
-            transition: all 0.2s ease;
-            color: var(--tamna-teget);
-        }
-
-        .lang-btn:hover, .lang-btn.active {
-            background-color: var(--primarna-crvena);
-            color: var(--cista-bela);
-            border-color: var(--primarna-crvena);
-        }
-
-        /* LOGO BLOK */
-        .brand-section {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&q=80&w=1600');
-            background-size: cover;
-            background-position: center 30%;
-            text-align: center;
-            padding: 55px 20px 50px 20px;
-            border-bottom: 1px solid var(--siva-linija);
-            position: relative;
-            background-color: #2b3a4a;
-        }
-
+        a { text-decoration: none; color: inherit; transition: color 0.2s ease; }
+        .top-language-bar { background-color: #f1f5f9; border-bottom: 1px solid var(--siva-linija); padding: 8px 20px; }
+        .lang-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: flex-end; gap: 6px; }
+        .lang-btn { background: var(--cista-bela); border: 1px solid var(--siva-linija); padding: 4px 10px; font-family: var(--font-naslovi); font-size: 12px; font-weight: 700; cursor: pointer; border-radius: 3px; transition: all 0.2s ease; color: var(--tamna-teget); }
+        .lang-btn:hover, .lang-btn.active { background-color: var(--primarna-crvena); color: var(--cista-bela); border-color: var(--primarna-crvena); }
+        .brand-section { background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&q=80&w=1600'); background-size: cover; background-position: center 30%; text-align: center; padding: 55px 20px 50px 20px; border-bottom: 1px solid var(--siva-linija); position: relative; background-color: #2b3a4a; }
         .logo-link { display: inline-block; cursor: pointer; }
-
-        .logo-main {
-            font-family: var(--font-naslovi);
-            font-size: 68px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            color: var(--cista-bela);
-            line-height: 1;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0, 0, 0, 0.8), 1px -1px 0 rgba(0, 0, 0, 0.8), -1px 1px 0 rgba(0, 0, 0, 0.8), 1px 1px 0 rgba(0, 0, 0, 0.8);
-        }
-
-        .logo-subtitle {
-            font-family: var(--font-naslovi);
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 5px;
-            color: var(--cista-bela);
-            text-transform: uppercase;
-            margin-top: 10px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0, 0, 0, 0.8), 1px -1px 0 rgba(0, 0, 0, 0.8), -1px 1px 0 rgba(0, 0, 0, 0.8), 1px 1px 0 rgba(0, 0, 0, 0.8);
-        }
-
-        /* NAVIGACIJA / MENI */
-        nav {
-            background-color: var(--cista-bela);
-            border-bottom: 3px solid var(--primarna-crvena);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-        }
-
-        .nav-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            padding: 0 15px;
-        }
-
+        .logo-main { font-family: var(--font-naslovi); font-size: 68px; font-weight: 900; letter-spacing: -1px; color: var(--cista-bela); line-height: 1; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0,0,0,0.8), 1px -1px 0 rgba(0,0,0,0.8), -1px 1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(0,0,0,0.8); }
+        .logo-subtitle { font-family: var(--font-naslovi); font-size: 15px; font-weight: 700; letter-spacing: 5px; color: var(--cista-bela); text-transform: uppercase; margin-top: 10px; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0,0,0,0.8), 1px -1px 0 rgba(0,0,0,0.8), -1px 1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(0,0,0,0.8); }
+        nav { background-color: var(--cista-bela); border-bottom: 3px solid var(--primarna-crvena); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .nav-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: center; padding: 0 15px; }
         nav ul { display: flex; list-style: none; overflow-x: auto; white-space: nowrap; scrollbar-width: none; align-items: center; }
         nav ul::-webkit-scrollbar { display: none; }
         nav ul li a { font-family: var(--font-naslovi); display: block; padding: 15px 20px; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
         nav ul li a:hover { color: var(--primarna-crvena); }
-
-        .search-nav-btn {
-            color: var(--siva-tekst);
-            font-size: 16px;
-            cursor: pointer;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-family: var(--font-naslovi);
-        }
+        .search-nav-btn { color: var(--siva-tekst); font-size: 16px; cursor: pointer; padding: 15px 20px; display: flex; align-items: center; gap: 6px; font-weight: 700; text-transform: uppercase; font-family: var(--font-naslovi); }
         .search-nav-btn:hover { color: var(--primarna-crvena); }
-
-        /* BREAKING NEWS TRAKA */
         .breaking-bar { background-color: var(--tamna-teget); color: var(--cista-bela); font-size: 14px; font-weight: 600; }
         .breaking-container { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; }
         .breaking-badge { background-color: var(--primarna-crvena); padding: 10px 20px; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; font-family: var(--font-naslovi); position: relative; }
         .breaking-text { padding: 0 20px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-
-        /* GLAVNI STRUKTURNI RASPORED */
         .heute-grid { max-width: 1280px; margin: 25px auto; padding: 0 20px; display: grid; grid-template-columns: 2.2fr 1.1fr 1fr; gap: 24px; }
-
         @media (max-width: 1024px) { .heute-grid { grid-template-columns: 1.5fr 1fr; } .third-column { grid-column: span 2; } }
         @media (max-width: 768px) { .heute-grid { grid-template-columns: 1fr; } .third-column { grid-column: span 1; } }
-
-        /* VRTULJAK */
         .slider-wrapper { position: relative; height: 520px; background-color: #000; overflow: hidden; }
         .slide-item { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; display: flex; flex-direction: column; justify-content: flex-end; }
         .slide-item.active { opacity: 1; z-index: 10; }
@@ -178,13 +44,9 @@
         .slide-meta { position: relative; z-index: 20; padding: 40px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: var(--cista-bela); }
         .category-tag { background-color: var(--primarna-crvena); color: var(--cista-bela); padding: 4px 8px; font-family: var(--font-naslovi); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 12px; }
         .slide-title { font-family: var(--font-naslovi); font-size: 34px; font-weight: 900; line-height: 1.15; letter-spacing: -0.5px; }
-
-        /* Kontrole slajdera */
         .nav-dot-container { position: absolute; bottom: 15px; right: 20px; z-index: 30; display: flex; gap: 8px; }
         .nav-dot { width: 10px; height: 10px; border-radius: 50%; background-color: rgba(255,255,255,0.4); cursor: pointer; transition: background-color 0.2s; }
         .nav-dot.active { background-color: var(--primarna-crvena); transform: scale(1.2); }
-
-        /* DRUGA KOLONA */
         .secondary-column { display: flex; flex-direction: column; gap: 20px; }
         .heute-card { background-color: var(--cista-bela); border: 1px solid var(--siva-linija); display: flex; flex-direction: column; height: 250px; overflow: hidden; }
         .heute-card-img { height: 130px; position: relative; }
@@ -193,8 +55,6 @@
         .heute-card-body .category-tag { margin-bottom: 6px; align-self: flex-start; }
         .heute-card-title { font-family: var(--font-naslovi); font-size: 16px; font-weight: 800; line-height: 1.25; color: var(--tamna-teget); }
         .heute-card:hover .heute-card-title { color: var(--primarna-crvena); }
-
-        /* TREĆA KOLONA */
         .third-column { background-color: var(--cista-bela); border: 1px solid var(--siva-linija); padding: 16px; }
         .column-heading { font-family: var(--font-naslovi); font-size: 18px; font-weight: 900; text-transform: uppercase; border-bottom: 3px solid var(--tamna-teget); padding-bottom: 6px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
         .column-heading span { color: var(--primarna-crvena); }
@@ -207,8 +67,6 @@
     </style>
 </head>
 <body>
-
-    <!-- GORNJA BAR TRAKA ZA JEZIKE -->
     <div class="top-language-bar">
         <div class="lang-container">
             <button class="lang-btn active" onclick="prebaciPismo('lat')">Lat</button>
@@ -221,11 +79,7 @@
             <button class="lang-btn" onclick="prevediSajt('en')">ENG</button>
         </div>
     </div>
-
-    <!-- VIDLJIVI REZERVNI GOOGLE ELEMENT KOJI SMO SADA INTEGRISALI DA PROradi SVUDA -->
-    <div id="google_translate_element" style="display:inline-block; float:right; margin-right:20px; margin-top:5px; transform: scale(0.85); display:none;"></div>
-
-    <!-- LOGO BLOK -->
+    <div id="google_translate_element" style="display:none;"></div>
     <div class="brand-section">
         <a href="index.html" class="logo-link">
             <div class="logo-main" id="tekst-logo">Vona</div>
@@ -233,27 +87,22 @@
         </a>
     </div>
 
-    <!-- MENI SA "BIZNIS" I DUGMETOM "PRETRAGA 🔍" -->
+    <!-- TAČKA 6: LINKOVI SU SADA POVEZANI SA FAJLOVIMA KOJE ĆEMO SADA NAPRAVITI -->
     <nav>
         <div class="nav-container">
             <ul>
-                <li><a href="#" class="prevod-kat">Društvo</a></li>
-                <li><a href="#" class="prevod-kat">Politika</a></li>
-                <li><a href="#" class="prevod-kat">Biznis</a></li>
-                <li><a href="#" class="prevod-kat">Kultura</a></li>
-                <li><a href="#" class="prevod-kat">Sport</a></li>
-                <li><a href="#" class="prevod-kat">Hronika</a></li>
-                <li><a href="#" class="prevod-kat">Svet</a></li>
-                <li>
-                    <a href="#" class="search-nav-btn" onclick="alert('Pretraga je u pripremi!')">
-                        <span class="prevod-kat">Pretraga</span> &#128269;
-                    </a>
-                </li>
+                <li><a href="drustvo.html" class="prevod-kat">Društvo</a></li>
+                <li><a href="politika.html" class="prevod-kat">Politika</a></li>
+                <li><a href="biznis.html" class="prevod-kat">Biznis</a></li>
+                <li><a href="kultura.html" class="prevod-kat">Kultura</a></li>
+                <li><a href="sport.html" class="prevod-kat">Sport</a></li>
+                <li><a href="hronika.html" class="prevod-kat">Hronika</a></li>
+                <li><a href="svet.html" class="prevod-kat">Svet</a></li>
+                <li><a href="#" class="search-nav-btn" onclick="alert('Pretraga je u pripremi!')"><span class="prevod-kat">Pretraga</span> &#128269;</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- BREAKING NEWS TRAKA -->
     <div class="breaking-bar">
         <div class="breaking-container">
             <div class="breaking-badge" id="tekst-uzivo">Uživo</div>
@@ -261,7 +110,6 @@
         </div>
     </div>
 
-    <!-- HEUTE ASIMETRIČNI LAYOUT -->
     <main class="heute-grid">
         <section class="slider-wrapper">
             <div class="slide-item active">
@@ -310,18 +158,14 @@
 
         <section class="secondary-column">
             <div class="heute-card">
-                <div class="heute-card-img">
-                    <img src="https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?w=500" alt="Svet">
-                </div>
+                <div class="heute-card-img"><img src="https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?w=500" alt="Svet"></div>
                 <div class="heute-card-body">
                     <span class="category-tag prevod-kat">Svet</span>
                     <h2 class="heute-card-title trans-tekst">Globalni klimatski samit doneo nove protokole za očuvanje energije</h2>
                 </div>
             </div>
             <div class="heute-card">
-                <div class="heute-card-img">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500" alt="Društvo">
-                </div>
+                <div class="heute-card-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500" alt="Društvo"></div>
                 <div class="heute-card-body">
                     <span class="category-tag prevod-kat">Društvo</span>
                     <h2 class="heute-card-title trans-tekst">Infrastrukturni projekti: Počinje izgradnja novog ekološkog parka</h2>
@@ -329,157 +173,36 @@
             </div>
         </section>
 
-        <!-- ISPRAVLJENO: Razbijen HTML naslov u dva bezbedna ID-ja da ćirilica ne dira oznaku span -->
         <aside class="third-column">
             <h3 class="column-heading"><span id="tekst-desno-naslov">Najnovije</span> <span id="tekst-desno-crveno" style="color:var(--primarna-crvena)">Vesti</span></h3>
             <ul class="ticker-list">
-                <li class="ticker-item">
-                    <a href="#">
-                        <span class="ticker-time">14:32</span>
-                        <span class="ticker-text trans-tekst">Završena regionalna konferencija o održivom razvoju poljoprivrede</span>
-                    </a>
-                </li>
-                <li class="ticker-item">
-                    <a href="#">
-                        <span class="ticker-time">14:15</span>
-                        <span class="ticker-text trans-tekst">Novi uspesi naših studenata na međunarodnom takmičenju u Beču</span>
-                    </a>
-                </li>
-                <li class="ticker-item">
-                    <a href="#">
-                        <span class="ticker-time">13:50</span>
-                        <span class="ticker-text trans-tekst">Hronika: Kontrola saobraćaja pojačana tokom predstojećeg vikenda</span>
-                    </a>
-                </li>
-                <li class="ticker-item">
-                    <a href="#">
-                        <span class="ticker-time">13:10</span>
-                        <span class="ticker-text trans-tekst">Najavljena premijera nove domaće drame u bioskopima širom Vojvodine</span>
-                    </a>
-                </li>
-                <li class="ticker-item">
-                    <a href="#">
-                        <span class="ticker-time">12:45</span>
-                        <span class="ticker-text trans-tekst">Kultura: Narodni muzej otvara vrata za posetioce tokom cele noći</span>
-                    </a>
-                </li>
+                <li class="ticker-item"><a href="#"><span class="ticker-time">14:32</span><span class="ticker-text trans-tekst">Završena regionalna konferencija o održivom razvoju poljoprivrede</span></a></li>
+                <li class="ticker-item"><a href="#"><span class="ticker-time">14:15</span><span class="ticker-text trans-tekst">Novi uspesi naših studenata na međunarodnom takmičenju u Beču</span></a></li>
+                <li class="ticker-item"><a href="#"><span class="ticker-time">13:50</span><span class="ticker-text trans-tekst">Hronika: Kontrola saobraćaja pojačana tokom predstojećeg vikenda</span></a></li>
+                <li class="ticker-item"><a href="#"><span class="ticker-time">13:10</span><span class="ticker-text trans-tekst">Najavljena premijera nove domaće drame u bioskopima širom Vojvodine</span></a></li>
+                <li class="ticker-item"><a href="#"><span class="ticker-time">12:45</span><span class="ticker-text trans-tekst">Kultura: Narodni muzej otvara vrata za posetioce tokom cele noći</span></a></li>
             </ul>
         </aside>
     </main>
 
-    <!-- INICIJALIZACIJA GOOGLE TRANSLATE API-JA (Novi robusniji kod) -->
     <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'sr',
-                includedLanguages: 'hu,ro,uk,sk,hr,en',
-                multilanguagePage: true
-            }, 'google_translate_element');
-        }
+        function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'sr', includedLanguages: 'hu,ro,uk,sk,hr,en', multilanguagePage: true }, 'google_translate_element'); }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <script>
-        let currentIndex = 0;
-        const slides = document.querySelectorAll('.slide-item');
-        const dots = document.querySelectorAll('.nav-dot');
-        const intervalTime = 4000; 
-
-        function changeSlide(nextIndex) {
-            slides[currentIndex].classList.remove('active');
-            dots[currentIndex].classList.remove('active');
-            currentIndex = nextIndex;
-            slides[currentIndex].classList.add('active');
-            dots[currentIndex].classList.add('active');
-        }
-
-        function autoPlay() {
-            let next = (currentIndex + 1) % slides.length;
-            changeSlide(next);
-        }
-
-        function setSlide(index) {
-            clearInterval(slideInterval); 
-            changeSlide(index);
-            slideInterval = setInterval(autoPlay, intervalTime);
-        }
-
+        let currentIndex = 0; const slides = document.querySelectorAll('.slide-item'); const dots = document.querySelectorAll('.nav-dot'); const intervalTime = 4000;
+        function changeSlide(nextIndex) { slides[currentIndex].classList.remove('active'); dots[currentIndex].classList.remove('active'); currentIndex = nextIndex; slides[currentIndex].classList.add('active'); dots[currentIndex].classList.add('active'); }
+        function autoPlay() { let next = (currentIndex + 1) % slides.length; changeSlide(next); }
+        function setSlide(index) { clearInterval(slideInterval); changeSlide(index); slideInterval = setInterval(autoPlay, intervalTime); }
         let slideInterval = setInterval(autoPlay, intervalTime);
-
-        /* POBOLJŠANI PREVODILAC KOJI RADI NA SVAKOM OKRUŽENJU */
-        function prevediSajt(kodJezika) {
-            // Prvo vraćamo pismo na latinicu da bi Google mogao pravilno da prepozna izvorne reči
-            konvertujULatinicu();
-            
-            const frame = document.querySelector('.goog-te-menu-frame');
-            if(!frame) {
-                // Ako se okvir još puni, simuliramo izvorni combo selektor
-                const s = document.querySelector('.goog-te-combo');
-                if(s) { s.value = kodJezika; s.dispatchEvent(new Event('change')); return; }
-            }
-            
-            // Otvaramo izvorni Google Translate prozor i vršimo automatski odabir jezika
-            let skriptaMeni = document.querySelector('iframe.goog-te-menu-frame');
-            if (skriptaMeni && skriptaMeni.contentWindow) {
-                let d = skriptaMeni.contentWindow.document;
-                let el = d.querySelector('a[id*=".' + kodJezika + '"]');
-                if (el) { el.click(); }
-            }
-        }
-
-        const mapaPreslovljavanja = {
-            'A': 'А', 'B': 'Б', 'V': 'В', 'G': 'Г', 'D': 'Д', 'Đ': 'Ђ', 'E': 'Е', 'Ž': 'Ж', 'Z': 'З', 'I': 'И', 'J': 'Ј', 'K': 'К', 'L': 'Л', 'M': 'М', 'N': 'Н', 'O': 'О', 'P': 'П', 'R': 'Р', 'S': 'С', 'T': 'Т', 'Ć': 'Ć', 'U': 'У', 'F': 'Ф', 'H': 'Х', 'C': 'Ц', 'Č': 'Ч', 'Dž': 'Џ', 'dž': 'џ', 'Š': 'Ш',
-            'a': 'а', 'b': 'б', 'v': 'в', 'g': 'г', 'd': 'д', 'đ': 'ђ', 'e': 'е', 'ž': 'ж', 'z': 'з', 'i': 'и', 'j': 'ј', 'k': 'к', 'l': 'л', 'm': 'м', 'n': 'н', 'o': 'о', 'p': 'п', 'r': 'р', 's': 'с', 't': 'т', 'ć': 'ћ', 'u': 'у', 'f': 'ф', 'h': 'х', 'c': 'ц', 'č': 'ч', 'š': 'ш', 'Lj': 'Љ', 'lj': 'љ', 'Nj': 'Њ', 'nj': 'њ'
-        };
-
+        function prevediSajt(kodJezika) { konvertujULatinicu(); const frame = document.querySelector('.goog-te-menu-frame'); if(!frame) { const s = document.querySelector('.goog-te-combo'); if(s) { s.value = kodJezika; s.dispatchEvent(new Event('change')); return; } } let skriptaMeni = document.querySelector('iframe.goog-te-menu-frame'); if (skriptaMeni && skriptaMeni.contentWindow) { let d = skriptaMeni.contentWindow.document; let el = d.querySelector('a[id*=".' + kodJezika + '"]'); if (el) { el.click(); } } }
+        const mapaPreslovljavanja = { 'A': 'А', 'B': 'Б', 'V': 'В', 'G': 'Г', 'D': 'Д', 'Đ': 'Ђ', 'E': 'Е', 'Ž': 'Ж', 'Z': 'З', 'I': 'И', 'J': 'Ј', 'K': 'К', 'L': 'Л', 'M': 'М', 'N': 'Н', 'O': 'О', 'P': 'П', 'R': 'Р', 'S': 'С', 'T': 'Т', 'Ć': 'Ć', 'U': 'У', 'F': 'Ф', 'H': 'Х', 'C': 'Ц', 'Č': 'Ч', 'Dž': 'Џ', 'dž': 'џ', 'Š': 'Ш', 'a': 'а', 'b': 'б', 'v': 'в', 'g': 'г', 'd': 'д', 'đ': 'ђ', 'e': 'е', 'ž': 'ж', 'z': 'з', 'i': 'и', 'j': 'ј', 'k': 'к', 'l': 'л', 'm': 'м', 'n': 'н', 'o': 'о', 'p': 'п', 'r': 'р', 's': 'с', 't': 'т', 'ć': 'ћ', 'u': 'у', 'f': 'ф', 'h': 'х', 'c': 'ц', 'č': 'ч', 'š': 'ш', 'Lj': 'Љ', 'lj': 'љ', 'Nj': 'Њ', 'nj': 'њ' };
         const izvorneVrednosti = {};
-
-        function sakupiIzvorneTekstove() {
-            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov, #tekst-desno-crveno');
-            elementi.forEach((el, index) => {
-                izvorneVrednosti[index] = el.innerHTML;
-            });
-        }
-
-        window.onload = function() {
-            sakupiIzvorneTekstove();
-            if (window.netlifyIdentity) {
-                window.netlifyIdentity.on("init", user => { if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); } });
-            }
-        };
-
-        function konvertujULatinicu() {
-            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov, #tekst-desno-crveno');
-            elementi.forEach((el, index) => {
-                if(izvorneVrednosti[index]) el.innerHTML = izvorneVrednosti[index];
-            });
-        }
-
-        function konvertujUĆirilicicu() {
-            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov, #tekst-desno-crveno');
-            elementi.forEach((el) => {
-                let tekst = el.innerHTML;
-                tekst = tekst.replace(/dž/g, 'џ').replace(/Dž/g, 'Џ').replace(/lj/g, 'љ').replace(/Lj/g, 'Љ').replace(/nj/g, 'њ').replace(/Nj/g, 'Њ');
-                let noviTekst = "";
-                for (let i = 0; i < tekst.length; i++) {
-                    let slovo = tekst[i];
-                    noviTekst += mapaPreslovljavanja[slovo] ? mapaPreslovljavanja[slovo] : slovo;
-                }
-                el.innerHTML = noviTekst;
-            });
-        }
-
-        function prebaciPismo(pismo) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            if (pismo === 'cir') {
-                konvertujUĆirilicicu();
-            } else {
-                konvertujULatinicu();
-                prevediSajt('sr');
-            }
-        }
+        function sakupiIzvorneTekstove() { let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov, #tekst-desno-crveno'); elementi.forEach((el, index) => { izvorneVrednosti[index] = el.innerHTML; }); }
+        window.onload = function() { sakupiIzvorneTekstove(); if (window.netlifyIdentity) { window.netlifyIdentity.on("init", user => { if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); } }); } };
+        function konvertujULatinicu() { let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov, #tekst-desno-crveno'); elementi.forEach((el, index) => { if(izvorneVrednosti[index]) el.innerHTML = izvorneVrednosti[index]; }); }
+        function konvertujUĆirilicicu() { let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov, #tekst-desno-crveno'); elementi.forEach((el) => { let tekst = el.innerHTML; tekst = tekst.replace(/dž/g, 'џ').replace(/Dž/g, 'Џ').replace(/lj/g, 'љ').replace(/Lj/g, 'Љ').replace(/nj/g, 'њ').replace(/Nj/g, 'Њ'); let noviTekst = ""; for (let i = 0; i < tekst.length; i++) { let slovo = tekst[i]; noviTekst += mapaPreslovljavanja[slovo] ? mapaPreslovljavanja[slovo] : slovo; } el.innerHTML = noviTekst; }); }
+        function prebaciPismo(pismo) { document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active')); event.target.classList.add('active'); if (pismo === 'cir') { konvertujUĆirilicicu(); } else { konvertujULatinicu(); prevediSajt('sr'); } }
     </script>
 </body>
 </html>
