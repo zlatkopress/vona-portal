@@ -41,36 +41,40 @@
             transition: color 0.2s ease;
         }
 
-        /* LOGO I NAZIV AGENCIJE */
+        /* TAČKA 1: LOGO BLOK SA PRIVREMENOM FOTOGRAFIJOM VOJVOĐANSKE RAVNICE I ĐERMA */
         .brand-section {
-            background-color: var(--cista-bela);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1595107127116-291771120281?auto=format&fit=crop&q=80&w=1600');
+            background-size: cover;
+            background-position: center 35%;
             text-align: center;
-            padding: 25px 20px 15px 20px;
+            padding: 50px 20px 45px 20px;
             border-bottom: 1px solid var(--siva-linija);
+            position: relative;
         }
 
+        /* TAČKA 1: UKLONJENA CRVENA TAČKA I DODAT JAK TEXT-SHADOW / OUTLINE ZA VIDLJIVOST */
         .logo-main {
             font-family: var(--font-naslovi);
-            font-size: 56px;
+            font-size: 68px;
             font-weight: 900;
-            letter-spacing: -2px;
-            color: var(--tamna-teget);
+            letter-spacing: -1px;
+            color: var(--cista-bela);
             line-height: 1;
             text-transform: uppercase;
+            /* Efekat senke/okvira koji osigurava da se bela slova savršeno vide preko slike */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0,0,0,0.8), 1px -1px 0 rgba(0,0,0,0.8), -1px 1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(0,0,0,0.8);
         }
 
-        .logo-main span {
-            color: var(--primarna-crvena);
-        }
-
+        /* TAČKA 1: PRILAGOĐEN PODNASLOV SA OKVIROM ZA MAKSIMALNU VIDLJIVOST */
         .logo-subtitle {
             font-family: var(--font-naslovi);
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 700;
-            letter-spacing: 4px;
-            color: var(--siva-tekst);
+            letter-spacing: 5px;
+            color: var(--cista-bela);
             text-transform: uppercase;
-            margin-top: 5px;
+            margin-top: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0,0,0,0.8), 1px -1px 0 rgba(0,0,0,0.8), -1px 1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(0,0,0,0.8);
         }
 
         /* NAVIGACIJA / MENI (KATEGORIJE) */
@@ -117,7 +121,7 @@
             color: var(--primarna-crvena);
         }
 
-        /* UDARNE VESTI (BREAKING NEWS TRAKA) */
+        /* BREAKING NEWS TRAKA (Karakteristična za Heute.at) */
         .breaking-bar {
             background-color: var(--tamna-teget);
             color: var(--cista-bela);
@@ -177,7 +181,7 @@
             }
         }
 
-        /* PRVA KOLONA: AUTOMATSKI VRTULJAK (5 GLAVNIH VESTI IMPOZANTNOG FORMATA) */
+        /* PRVA KOLONA: AUTOMATSKI VRTULJKOM (5 GLAVNIH VESTI IMPOZANTNOG FORMATA) */
         .slider-wrapper {
             position: relative;
             height: 520px;
@@ -266,7 +270,7 @@
             transform: scale(1.2);
         }
 
-        /* DRUGA KOLONA: SREDNJE VESTI (HEUTE SEKUNDARNE KARTICE) */
+        /* DRUGA KOLONA: SREDNJE VESTI */
         .secondary-column {
             display: flex;
             flex-direction: column;
@@ -382,13 +386,13 @@
 </head>
 <body>
 
-    <!-- LOGO BLOK SA TRAŽENIM NAZIVIMA -->
+    <!-- LOGO BLOK SA PRIVREMENOM FOTOGRAFIJOM RAAVNICE I NOVIM STILOVIMA ZA SLOVA -->
     <div class="brand-section">
-        <div class="logo-main">Vona<span>.</span></div>
+        <div class="logo-main">Vona</div>
         <div class="logo-subtitle">Vojvođanska Novinska Agencija</div>
     </div>
 
-    <!-- MENI SA 6 TRAŽENIH KATEGORIJA -->
+    <!-- MENI SA KATEGORIJAMA -->
     <nav>
         <div class="nav-container">
             <ul>
@@ -402,7 +406,7 @@
         </div>
     </nav>
 
-    <!-- BREAKING NEWS TRAKA (Karakteristična za Heute.at) -->
+    <!-- BREAKING NEWS TRAKA -->
     <div class="breaking-bar">
         <div class="breaking-container">
             <div class="breaking-badge">Uživo</div>
@@ -410,13 +414,9 @@
         </div>
     </div>
 
-    <!-- HEUTE ASIMETRIČNI LAYOUT (3 KOLONE) -->
+    <!-- HEUTE ASIMETRIČNI LAYOUT -->
     <main class="heute-grid">
-        
-        <!-- KOLONA 1: ULTRA-VELIKA KATEGORIJA SA AUTOMATSKIM VRTULJKOM (5 VESTI) -->
         <section class="slider-wrapper">
-            
-            <!-- VEST 1 -->
             <div class="slide-item active">
                 <img src="https://images.unsplash.com/photo-1546422904-90eab23c3d74?w=1000" alt="Glavna Vest 1">
                 <div class="slide-meta">
@@ -424,8 +424,6 @@
                     <h1 class="slide-title">Analiza VONA: Kakve ekonomske reforme očekuju region u narednom kvartalu?</h1>
                 </div>
             </div>
-
-            <!-- VEST 2 -->
             <div class="slide-item">
                 <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=1000" alt="Glavna Vest 2">
                 <div class="slide-meta">
@@ -433,8 +431,6 @@
                     <h1 class="slide-title">Novi obrazovni centri u Vojvodini: Ulaganje u mlade talente i digitalnu budućnost</h1>
                 </div>
             </div>
-
-            <!-- VEST 3 -->
             <div class="slide-item">
                 <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1000" alt="Glavna Vest 3">
                 <div class="slide-meta">
@@ -442,8 +438,6 @@
                     <h1 class="slide-title">Otvaranje jesenjeg salona umetnosti: Istaknuti stvaraoci okupljeni na jednom mestu</h1>
                 </div>
             </div>
-
-            <!-- VEST 4 -->
             <div class="slide-item">
                 <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1000" alt="Glavna Vest 4">
                 <div class="slide-meta">
@@ -451,8 +445,6 @@
                     <h1 class="slide-title">Spektakularna završnica prvenstva: Odlučujući bodovi osvojeni u poslednjoj sekundi</h1>
                 </div>
             </div>
-
-            <!-- VEST 5 -->
             <div class="slide-item">
                 <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=1000" alt="Glavna Vest 5">
                 <div class="slide-meta">
@@ -460,8 +452,6 @@
                     <h1 class="slide-title">Vanredne ekipe uspešno sanirale posledice nevremena: Svi putevi prohodni</h1>
                 </div>
             </div>
-
-            <!-- Tačkice za navigaciju slajdera (Heute stil desno dole) -->
             <div class="nav-dot-container">
                 <div class="nav-dot active" onclick="setSlide(0)"></div>
                 <div class="nav-dot" onclick="setSlide(1)"></div>
@@ -471,7 +461,6 @@
             </div>
         </section>
 
-        <!-- KOLONA 2: DVE SREDNJE KARTICE ZA VESTI -->
         <section class="secondary-column">
             <div class="heute-card">
                 <div class="heute-card-img">
@@ -493,7 +482,6 @@
             </div>
         </section>
 
-        <!-- KOLONA 3: NAJNOVIJE VESTI (BRZA TRAKA) -->
         <aside class="third-column">
             <h3 class="column-heading">Najnovije <span>Vesti</span></h3>
             <ul class="ticker-list">
@@ -506,7 +494,7 @@
                 <li class="ticker-item">
                     <a href="#">
                         <span class="ticker-time">14:15</span>
-                        <span class="ticker-text">Novi uspesi naših studenata na međunarodnom takmičenju u Beču</span>
+                        <span class="ticker-text">Novi uspesi naših studenta na međunarodnom takmičenju u Beču</span>
                     </a>
                 </li>
                 <li class="ticker-item">
@@ -529,10 +517,8 @@
                 </li>
             </ul>
         </aside>
-
     </main>
 
-    <!-- AUTOMATSKI INŽENJERING VRTULJKA (Tajming: 4 sekunde) -->
     <script>
         let currentIndex = 0;
         const slides = document.querySelectorAll('.slide-item');
@@ -542,9 +528,7 @@
         function changeSlide(nextIndex) {
             slides[currentIndex].classList.remove('active');
             dots[currentIndex].classList.remove('active');
-            
             currentIndex = nextIndex;
-            
             slides[currentIndex].classList.add('active');
             dots[currentIndex].classList.add('active');
         }
