@@ -8,7 +8,7 @@
     <!-- Google Fontovi: Moderni, oštri sans-serif pogodan za novinske portale -->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- TAČKA 7: UKLJUČIVANJE SVETSKE BIBLIOTEKE IKONICA ZA DRUŠTVENE MREŽE -->
+    <!-- Biblioteka ikonica za autentične logotipe društvenih mreža -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
     <!-- IDENTITY (Potrebno za CMS) -->
@@ -159,33 +159,40 @@
         }
         .search-nav-btn:hover { color: var(--primarna-crvena); }
 
-        /* TAČKA 7: POTPUNO REPROGRAMIRANA TRAKA UŽIVO SA POKRETNIM TEKSTOM I IKONICAMA */
+        /* TRAKA UŽIVO SA ISPRAVLJENIM GEOMETRIJSKIM CENTRIRANJEM */
         .breaking-bar { 
             background-color: var(--tamna-teget); 
             color: var(--cista-bela); 
             font-size: 14px; 
             font-weight: 600; 
             overflow: hidden;
+            height: 44px; /* Fiksirana visina trake za savršen balans */
+            display: flex;
+            align-items: center;
         }
 
         .breaking-container { 
+            width: 100%;
             max-width: 1280px; 
             margin: 0 auto; 
             display: flex; 
             align-items: center; 
             justify-content: space-between;
-            position: relative;
+            height: 100%;
         }
 
         .breaking-badge { 
             background-color: var(--primarna-crvena); 
-            padding: 10px 20px; 
+            padding: 0 20px; 
             text-transform: uppercase; 
             font-weight: 800; 
             letter-spacing: 1px; 
             font-family: var(--font-naslovi); 
-            z-index: 5; /* Drži značku fiksiranu iznad pokretnog teksta */
-            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+            z-index: 5;
+            height: 100%;
+            display: flex;
+            align-items: center; /* Centorvano UŽIVO */
+            box-shadow: 5px 0 15px rgba(0,0,0,0.3);
         }
 
         /* Pokretna zona */
@@ -196,6 +203,7 @@
             padding-left: 20px;
             display: flex;
             align-items: center;
+            height: 100%;
         }
 
         .ticker-marquee {
@@ -205,7 +213,7 @@
         }
 
         .ticker-marquee:hover {
-            animation-play-state: paused; /* Zaustavlja tekst kada čitalac stavi miš preko njega */
+            animation-play-state: paused;
             cursor: pointer;
         }
 
@@ -226,34 +234,43 @@
             100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        /* Sekcija za društvene mreže skroz desno unutar trake */
+        /* ISPRAVLJENO: KOCKICE SA PRAVIM BRENDIRANIM BOJAMA I MILIMETARSKIM CENTRIRANJEM */
         .social-bar-container {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 0 20px;
+            gap: 6px;
+            padding: 0 15px;
             background-color: var(--tamna-teget);
             z-index: 5;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
             height: 100%;
-            align-self: stretch;
         }
 
         .social-icon-btn {
-            color: #cbd5e1;
-            font-size: 16px;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px; /* Elegantne male kockice */
+            color: #ffffff;
+            font-size: 13px;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Brendirane boje na „Hover“ efektu miša */
-        .social-icon-btn.fb:hover { color: #1877f2; transform: scale(1.15); }
-        .social-icon-btn.ig:hover { color: #e1306c; transform: scale(1.15); }
-        .social-icon-btn.tt:hover { color: #00f2fe; transform: scale(1.15); }
-        .social-icon-btn.x:hover { color: #ffffff; transform: scale(1.15); }
-        .social-icon-btn.yt:hover { color: #ff0000; transform: scale(1.15); }
+        /* Definisane autentične boje logoa u kockicama */
+        .social-icon-btn.fb { background-color: #1877f2; }
+        .social-icon-btn.ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .social-icon-btn.tt { background-color: #000000; border: 1px solid #25f4ee; }
+        .social-icon-btn.x  { background-color: #000000; }
+        .social-icon-btn.yt { background-color: #ff0000; }
+
+        /* Efekat na dodir miša - blagi skok i jači sjaj */
+        .social-icon-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+            filter: brightness(1.15);
+        }
 
         /* GLAVNI STRUKTURNI RASPORED */
         .heute-grid { max-width: 1280px; margin: 25px auto; padding: 0 20px; display: grid; grid-template-columns: 2.2fr 1.1fr 1fr; gap: 24px; }
@@ -342,23 +359,22 @@
         </div>
     </nav>
 
-    <!-- TAČKA 7: KORIGOVANA I DINAMIČNA CRNA TRAKA SA POKRETNIM NASLOVIMA I LOGOTIPIMA MREŽA -->
+    <!-- TAČKA 7: SAVRŠENO PORAVNATA CRNA TRAKA SA ZVANIČNIM KOCKICAMA U BOJI MREŽA -->
     <div class="breaking-bar">
         <div class="breaking-container">
             <div class="breaking-badge" id="tekst-uzivo">Uživo</div>
             
-            <!-- Zona gde teku naslovi vesti hronološki -->
             <div class="ticker-wrap">
                 <div class="ticker-marquee" id="tekst-traka">
                     <div class="marquee-item"><span>14:32</span> Završena regionalna konferencija o održivom razvoju poljoprivrede...</div>
-                    <div class="marquee-item"><span>14:15</span> Novi uspesi naših studenata na međunarodnom takmičenju u Beču...</div>
+                    <div class="marquee-item"><span>14:15</span> Novi uspesi naših studenta na međunarodnom takmičenju u Beču...</div>
                     <div class="marquee-item"><span>13:50</span> Hronika: Kontrola saobraćaja pojačana tokom predstojećeg vikenda...</div>
                     <div class="marquee-item"><span>13:10</span> Najavljena premijera nove domaće drame u bioskopima širom Vojvodine...</div>
                     <div class="marquee-item"><span>12:45</span> Kultura: Narodni muzej otvara vrata za posetioce tokom cele noći...</div>
                 </div>
             </div>
 
-            <!-- Dugmad za društvene mreže fiksirana skroz desno -->
+            <!-- Dugmad za društvene mreže spakovana u prave brendirane kockice na sredini trake -->
             <div class="social-bar-container">
                 <a href="https://facebook.com" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://instagram.com" target="_blank" class="social-icon-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -404,7 +420,7 @@
                 <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=1000" alt="Glavna Vest 5">
                 <div class="slide-meta">
                     <span class="category-tag prevod-kat">Hronika</span>
-                    <h1 class="slide-title trans-tekst">Vanredne ekipe uspešno sanirale posledice nevremena: Svi putevi prohodni</h1>
+                    <h1 class="slide-title trans-tekst">Vanredne ekipe uspešno sanirale postoperative nevremena: Svi putevi prohodni</h1>
                 </div>
             </div>
             <div class="nav-dot-container">
