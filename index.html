@@ -1,18 +1,383 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vona Portal - Najnovije Vesti</title>
+    
+    <!-- Google Fontovi (Moderni sans-serif za portale) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Podesivi Stilovi (Boje, Fontovi, Izgled) -->
+    <style>
+        /* PRILAGODLJIVE PROMENLJIVE - Ovde menjamo boje i fontove kasnije */
+        :root {
+            --primarna-boja: #e11d48; /* Blic crvena */
+            --tamna-boja: #0f172a;    /* Boja teksta i tamnih delova */
+            --svetla-pozadina: #f8fafc; /* Pozadina sajta */
+            --bela: #ffffff;
+            --siva-tekst: #64748b;
+            --glavni-font: 'Inter', sans-serif;
+        }
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+        body {
+            font-family: var(--glavni-font);
+            background-color: var(--svetla-pozadina);
+            color: var(--tamna-boja);
+            line-height: 1.5;
+        }
 
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
-</div> 
+        /* ZAGLAVLJE (HEADER) */
+        header {
+            background-color: var(--bela);
+            border-bottom: 3px solid var(--primarna-boja);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--tamna-boja);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--primarna-boja);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primarna-boja);
+        }
+
+        /* GLAVNA STRUKTURA (GRID KAO NA BLICU) */
+        .main-layout {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* SLAJDER SA 5 VESTI (VRTULJAK) */
+        .slider-section {
+            position: relative;
+            height: 450px;
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 10;
+            padding: 40px;
+            color: var(--bela);
+            width: 100%;
+        }
+
+        .badge {
+            background-color: var(--primarna-boja);
+            color: var(--bela);
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        /* Kontrole slajdera (Strelice) */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 20;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .slider-btn:hover { background: var(--primarna-boja); }
+        .prev { left: 20px; }
+        .next { right: 20px; }
+
+        /* BOČNA TRAKA - NAJNOVIJE VESTI */
+        .sidebar {
+            background-color: var(--bela);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            border-bottom: 2px solid var(--primarna-boja);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 20px;
+            background-color: var(--primarna-boja);
+        }
+
+        .news-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .news-item {
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 12px;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .news-time {
+            font-size: 12px;
+            color: var(--primarna-boja);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        .news-item-title {
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .news-item:hover .news-item-title {
+            color: var(--primarna-boja);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ZAGLAVLJE SA LOGOOM I KATEGORIJAMA -->
+    <header>
+        <div class="header-container">
+            <div class="logo"><a href="#">Vona<span>Portal</span></a></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Društvo</a></li>
+                    <li><a href="#">Politika</a></li>
+                    <li><a href="#">Kultura</a></li>
+                    <li><a href="#">Sport</a></li>
+                    <li><a href="#">Hronika</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- GLAVNI LAYOUT (SLAJDER + NAJNOVIJE) -->
+    <main class="main-layout">
+        
+        <!-- LEVO: 5 GLAVNIH VESTI KOJE SE VRTE -->
+        <section class="slider-section">
+            <button class="slider-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="slider-btn next" onclick="changeSlide(1)">&#10095;</button>
+
+            <!-- Vest 1 -->
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1546422904-90eab23c3d74?w=800" alt="Vest 1">
+                <div class="slide-content">
+                    <span class="badge">Politika</span>
+                    <h2 class="slide-title">Ovo je prva glavna vest: Velike promene na političkoj sceni stupaju na snagu</h2>
+                </div>
+            </div>
+
+            <!-- Vest 2 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=800" alt="Vest 2">
+                <div class="slide-content">
+                    <span class="badge">Kultura</span>
+                    <h2 class="slide-title">Otvoren najveći festival kulture ove godine, pogledajte prve fotografije</h2>
+                </div>
+            </div>
+
+            <!-- Vest 3 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800" alt="Vest 3">
+                <div class="slide-content">
+                    <span class="badge">Sport</span>
+                    <h2 class="slide-title">Istorijski uspeh naših sportista: Osvojena zlatna medalja u dramatičnoj završnici</h2>
+                </div>
+            </div>
+
+            <!-- Vest 4 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800" alt="Vest 4">
+                <div class="slide-content">
+                    <span class="badge">Društvo</span>
+                    <h2 class="slide-title">Novi zakoni donose olakšice za mlade bračne parove i preduzetnike</h2>
+                </div>
+            </div>
+
+            <!-- Vest 5 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800" alt="Vest 5">
+                <div class="slide-content">
+                    <span class="badge">Hronika</span>
+                    <h2 class="slide-title">Vremenske nepogode napravile haos širom zemlje, hitne službe na terenu</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESNO: NAJNOVIJE VESTI (SIDEBAR) -->
+        <aside class="sidebar">
+            <h3 class="sidebar-title">Najnovije vesti</h3>
+            <ul class="news-list">
+                <li class="news-item">
+                    <a href="#">
+                        <span class="news-time">23:15</span>
+                        <span class="news-item-title">Završena sednica vlade, donete nove odluke o budžetu</span>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="#">
+                        <span class="news-time">22:58</span>
+                        <span class="news-item-title">Košarkaši ubedljivo pobedili u gostima, sledeća stanica finale</span>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="#">
+                        <span class="news-time">22:40</span>
+                        <span class="news-item-title">Udes na auto-putu kod isključenja za grad, stvorile se gužve</span>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="#">
+                        <span class="news-time">22:12</span>
+                        <span class="news-item-title">Pozorišna premijera o kojoj svi pričaju: Karte rasprodate mesec dana unapred</span>
+                    </a>
+                </li>
+                <li class="news-item">
+                    <a href="#">
+                        <span class="news-time">21:50</span>
+                        <span class="news-item-title">Otvaranje novih radnih mesta u IT sektoru od sledećeg meseca</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+    </main>
+
+    <!-- SCRIPT ZA AUTOMATSKO I MANUALNO OKRETANJE SLAJDERA -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Automatsko vrtenje na svakih 5 sekundi (kao na pravim portalima)
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>
