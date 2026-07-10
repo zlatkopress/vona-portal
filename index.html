@@ -41,18 +41,20 @@
             transition: color 0.2s ease;
         }
 
-        /* TAČKA 1: LOGO BLOK SA PRIVREMENOM FOTOGRAFIJOM VOJVOĐANSKE RAVNICE I ĐERMA */
+        /* TAČKA 1: LOGO BLOK SA NOVOM, STABILNOM FOTOGRAFIJOM VOJVOĐANSKIH NJIVA I RAVNICE */
         .brand-section {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1595107127116-291771120281?auto=format&fit=crop&q=80&w=1600');
+            /* Dodat novi, ultra-stabilan link ka fotografiji ravnice */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&q=80&w=1600');
             background-size: cover;
-            background-position: center 35%;
+            background-position: center 30%;
             text-align: center;
-            padding: 50px 20px 45px 20px;
+            padding: 55px 20px 50px 20px;
             border-bottom: 1px solid var(--siva-linija);
             position: relative;
+            background-color: #2b3a4a; /* Rezervna tamna boja ako internet uspori */
         }
 
-        /* TAČKA 1: UKLONJENA CRVENA TAČKA I DODAT JAK TEXT-SHADOW / OUTLINE ZA VIDLJIVOST */
+        /* TAČKA 1: REČ "VONA" BEZ CRVENE TAČKE SA JAKIM OUTLINE-OM */
         .logo-main {
             font-family: var(--font-naslovi);
             font-size: 68px;
@@ -61,11 +63,11 @@
             color: var(--cista-bela);
             line-height: 1;
             text-transform: uppercase;
-            /* Efekat senke/okvira koji osigurava da se bela slova savršeno vide preko slike */
+            /* Snažan okvir oko slova da tekst blješti preko slikovite pozadine */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0,0,0,0.8), 1px -1px 0 rgba(0,0,0,0.8), -1px 1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(0,0,0,0.8);
         }
 
-        /* TAČKA 1: PRILAGOĐEN PODNASLOV SA OKVIROM ZA MAKSIMALNU VIDLJIVOST */
+        /* TAČKA 1: PODNASLOV SA OKVIROM */
         .logo-subtitle {
             font-family: var(--font-naslovi);
             font-size: 15px;
@@ -121,7 +123,7 @@
             color: var(--primarna-crvena);
         }
 
-        /* BREAKING NEWS TRAKA (Karakteristična za Heute.at) */
+        /* BREAKING NEWS TRAKA */
         .breaking-bar {
             background-color: var(--tamna-teget);
             color: var(--cista-bela);
@@ -181,7 +183,7 @@
             }
         }
 
-        /* PRVA KOLONA: AUTOMATSKI VRTULJKOM (5 GLAVNIH VESTI IMPOZANTNOG FORMATA) */
+        /* VRTULJAK (5 GLAVNIH VESTI) */
         .slider-wrapper {
             position: relative;
             height: 520px;
@@ -270,7 +272,7 @@
             transform: scale(1.2);
         }
 
-        /* DRUGA KOLONA: SREDNJE VESTI */
+        /* DRUGA KOLONA */
         .secondary-column {
             display: flex;
             flex-direction: column;
@@ -322,7 +324,7 @@
             color: var(--primarna-crvena);
         }
 
-        /* TREĆA KOLONA: NAJNOVIJE VESTI STRIP */
+        /* TREĆA KOLONA */
         .third-column {
             background-color: var(--cista-bela);
             border: 1px solid var(--siva-linija);
@@ -386,7 +388,7 @@
 </head>
 <body>
 
-    <!-- LOGO BLOK SA PRIVREMENOM FOTOGRAFIJOM RAAVNICE I NOVIM STILOVIMA ZA SLOVA -->
+    <!-- LOGO BLOK SA NOVIM STABILNIM LINKOM ZA POZADINU -->
     <div class="brand-section">
         <div class="logo-main">Vona</div>
         <div class="logo-subtitle">Vojvođanska Novinska Agencija</div>
@@ -494,7 +496,7 @@
                 <li class="ticker-item">
                     <a href="#">
                         <span class="ticker-time">14:15</span>
-                        <span class="ticker-text">Novi uspesi naših studenta na međunarodnom takmičenju u Beču</span>
+                        <span class="ticker-text">Novi uspesi naših studenata na međunarodnom takmičenju u Beču</span>
                     </a>
                 </li>
                 <li class="ticker-item">
