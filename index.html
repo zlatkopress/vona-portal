@@ -8,17 +8,17 @@
     <!-- Google Fontovi: Moderni, oštri sans-serif pogodan za novinske portale -->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- UKLJUČIVANJE IDENTITY IDENTIFIKACIJE (Potrebno za bezbedan ulazak u CMS admin panel) -->
+    <!-- IDENTITY (Potrebno za CMS) -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <style>
-        /* GLOBALNE PROMENLJIVE - Lako menjanje boja i dizajna naknadno */
+        /* GLOBALNE PROMENLJIVE */
         :root {
-            --primarna-crvena: #e30613; /* Dinamična Heute-stil crvena */
-            --tamna-teget: #0f172a;     /* Primarna boja za tekst i jake elemente */
+            --primarna-crvena: #e30613;
+            --tamna-teget: #0f172a;
             --cista-bela: #ffffff;
-            --pozadina-sajta: #ffffff;   /* Zahtevana čista bela pozadina */
-            --siva-podloga: #f8fafc;     /* Za suptilno razdvajanje blokova */
+            --pozadina-sajta: #ffffff;
+            --siva-podloga: #f8fafc;
             --siva-tekst: #475569;
             --siva-linija: #e2e8f0;
             --font-naslovi: 'Archivo', sans-serif;
@@ -36,7 +36,13 @@
             background-color: var(--pozadina-sajta);
             color: var(--tamna-teget);
             line-height: 1.4;
+            top: 0 !important; /* Popravka za Google Translate traku */
         }
+
+        /* SKRIVANJE FABRIČKOG GOOGLE TRANSLATE PROZORA */
+        .goog-te-banner-frame, .goog-te-balloon-frame, #goog-gt-tt { display: none !important; }
+        .goog-te-gadget { display: none !important; }
+        body { y: 0 !important; }
 
         a {
             text-decoration: none;
@@ -44,7 +50,41 @@
             transition: color 0.2s ease;
         }
 
-        /* TAČKA 1: LOGO BLOK SA PRIVREMENOM FOTOGRAFIJOM */
+        /* TAČKA 3: SKROZ GORNJA SIVA TRAKA ZA JEZIKE (RTV STIL) */
+        .top-language-bar {
+            background-color: #f1f5f9;
+            border-bottom: 1px solid var(--siva-linija);
+            padding: 8px 20px;
+        }
+
+        .lang-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end; /* Gura dugmad skroz desno */
+            gap: 6px;
+        }
+
+        .lang-btn {
+            background: var(--cista-bela);
+            border: 1px solid var(--siva-linija);
+            padding: 4px 10px;
+            font-family: var(--font-naslovi);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.2s ease;
+            color: var(--tamna-teget);
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background-color: var(--primarna-crvena);
+            color: var(--cista-bela);
+            border-color: var(--primarna-crvena);
+        }
+
+        /* LOGO BLOK */
         .brand-section {
             background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&q=80&w=1600');
             background-size: cover;
@@ -56,11 +96,7 @@
             background-color: #2b3a4a;
         }
 
-        /* TAČKA 2: LOGOTIP JE SADA KLIKABILAN LINK KOJI VODI NA POČETAK (index.html) */
-        .logo-link {
-            display: inline-block;
-            cursor: pointer;
-        }
+        .logo-link { display: inline-block; cursor: pointer; }
 
         .logo-main {
             font-family: var(--font-naslovi);
@@ -84,7 +120,7 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0,0,0,0.8), 1px -1px 0 rgba(0,0,0,0.8), -1px 1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(0,0,0,0.8);
         }
 
-        /* NAVIGACIJA / MENI (KATEGORIJE) */
+        /* NAVIGACIJA / MENI */
         nav {
             background-color: var(--cista-bela);
             border-bottom: 3px solid var(--primarna-crvena);
@@ -102,302 +138,83 @@
             padding: 0 15px;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-        }
-
-        nav ul::-webkit-scrollbar {
-            display: none;
-        }
-
-        nav ul li a {
-            font-family: var(--font-naslovi);
-            display: block;
-            padding: 15px 20px;
-            font-size: 15px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        nav ul li a:hover {
-            color: var(--primarna-crvena);
-        }
+        nav ul { display: flex; list-style: none; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+        nav ul::-webkit-scrollbar { display: none; }
+        nav ul li a { font-family: var(--font-naslovi); display: block; padding: 15px 20px; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        nav ul li a:hover { color: var(--primarna-crvena); }
 
         /* BREAKING NEWS TRAKA */
-        .breaking-bar {
-            background-color: var(--tamna-teget);
-            color: var(--cista-bela);
-            font-size: 14px;
-            font-weight: 600;
-        }
+        .breaking-bar { background-color: var(--tamna-teget); color: var(--cista-bela); font-size: 14px; font-weight: 600; }
+        .breaking-container { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; }
+        .breaking-badge { background-color: var(--primarna-crvena); padding: 10px 20px; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; font-family: var(--font-naslovi); position: relative; }
+        .breaking-text { padding: 0 20px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 
-        .breaking-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-        }
+        /* GLAVNI STRUKTURNI RASPORED */
+        .heute-grid { max-width: 1280px; margin: 25px auto; padding: 0 20px; display: grid; grid-template-columns: 2.2fr 1.1fr 1fr; gap: 24px; }
 
-        .breaking-badge {
-            background-color: var(--primarna-crvena);
-            padding: 10px 20px;
-            text-transform: uppercase;
-            font-weight: 800;
-            letter-spacing: 1px;
-            font-family: var(--font-naslovi);
-            position: relative;
-        }
+        @media (max-width: 1024px) { .heute-grid { grid-template-columns: 1.5fr 1fr; } .third-column { grid-column: span 2; } }
+        @media (max-width: 768px) { .heute-grid { grid-template-columns: 1fr; } .third-column { grid-column: span 1; } }
 
-        .breaking-text {
-            padding: 0 20px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        /* GLAVNI STRUKTURNI RASPORED (HEUTE 3-KOLONE) */
-        .heute-grid {
-            max-width: 1280px;
-            margin: 25px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 2.2fr 1.1fr 1fr;
-            gap: 24px;
-        }
-
-        @media (max-width: 1024px) {
-            .heute-grid {
-                grid-template-columns: 1.5fr 1fr;
-            }
-            .third-column {
-                grid-column: span 2;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .heute-grid {
-                grid-template-columns: 1fr;
-            }
-            .third-column {
-                grid-column: span 1;
-            }
-        }
-
-        /* VRTULJAK (5 GLAVNIH VESTI) */
-        .slider-wrapper {
-            position: relative;
-            height: 520px;
-            background-color: #000;
-            overflow: hidden;
-        }
-
-        .slide-item {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        .slide-item.active {
-            opacity: 1;
-            z-index: 10;
-        }
-
-        .slide-item img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.75);
-        }
-
-        .slide-meta {
-            position: relative;
-            z-index: 20;
-            padding: 40px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            color: var(--cista-bela);
-        }
-
-        .category-tag {
-            background-color: var(--primarna-crvena);
-            color: var(--cista-bela);
-            padding: 4px 8px;
-            font-family: var(--font-naslovi);
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-block;
-            margin-bottom: 12px;
-        }
-
-        .slide-title {
-            font-family: var(--font-naslovi);
-            font-size: 34px;
-            font-weight: 900;
-            line-height: 1.15;
-            letter-spacing: -0.5px;
-        }
+        /* VRTULJAK */
+        .slider-wrapper { position: relative; height: 520px; background-color: #000; overflow: hidden; }
+        .slide-item { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; display: flex; flex-direction: column; justify-content: flex-end; }
+        .slide-item.active { opacity: 1; z-index: 10; }
+        .slide-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.75); }
+        .slide-meta { position: relative; z-index: 20; padding: 40px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: var(--cista-bela); }
+        .category-tag { background-color: var(--primarna-crvena); color: var(--cista-bela); padding: 4px 8px; font-family: var(--font-naslovi); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 12px; }
+        .slide-title { font-family: var(--font-naslovi); font-size: 34px; font-weight: 900; line-height: 1.15; letter-spacing: -0.5px; }
 
         /* Kontrole slajdera */
-        .nav-dot-container {
-            position: absolute;
-            bottom: 15px;
-            right: 20px;
-            z-index: 30;
-            display: flex;
-            gap: 8px;
-        }
-
-        .nav-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: rgba(255,255,255,0.4);
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .nav-dot.active {
-            background-color: var(--primarna-crvena);
-            transform: scale(1.2);
-        }
+        .nav-dot-container { position: absolute; bottom: 15px; right: 20px; z-index: 30; display: flex; gap: 8px; }
+        .nav-dot { width: 10px; height: 10px; border-radius: 50%; background-color: rgba(255,255,255,0.4); cursor: pointer; transition: background-color 0.2s; }
+        .nav-dot.active { background-color: var(--primarna-crvena); transform: scale(1.2); }
 
         /* DRUGA KOLONA */
-        .secondary-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .heute-card {
-            background-color: var(--cista-bela);
-            border: 1px solid var(--siva-linija);
-            display: flex;
-            flex-direction: column;
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .heute-card-img {
-            height: 130px;
-            position: relative;
-        }
-
-        .heute-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .heute-card-body {
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            flex-grow: 1;
-        }
-
-        .heute-card-body .category-tag {
-            margin-bottom: 6px;
-            align-self: flex-start;
-        }
-
-        .heute-card-title {
-            font-family: var(--font-naslovi);
-            font-size: 16px;
-            font-weight: 800;
-            line-height: 1.25;
-            color: var(--tamna-teget);
-        }
-
-        .heute-card:hover .heute-card-title {
-            color: var(--primarna-crvena);
-        }
+        .secondary-column { display: flex; flex-direction: column; gap: 20px; }
+        .heute-card { background-color: var(--cista-bela); border: 1px solid var(--siva-linija); display: flex; flex-direction: column; height: 250px; overflow: hidden; }
+        .heute-card-img { height: 130px; position: relative; }
+        .heute-card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .heute-card-body { padding: 12px; display: flex; flex-direction: column; justify-content: flex-start; flex-grow: 1; }
+        .heute-card-body .category-tag { margin-bottom: 6px; align-self: flex-start; }
+        .heute-card-title { font-family: var(--font-naslovi); font-size: 16px; font-weight: 800; line-height: 1.25; color: var(--tamna-teget); }
+        .heute-card:hover .heute-card-title { color: var(--primarna-crvena); }
 
         /* TREĆA KOLONA */
-        .third-column {
-            background-color: var(--cista-bela);
-            border: 1px solid var(--siva-linija);
-            padding: 16px;
-        }
-
-        .column-heading {
-            font-family: var(--font-naslovi);
-            font-size: 18px;
-            font-weight: 900;
-            text-transform: uppercase;
-            border-bottom: 3px solid var(--tamna-teget);
-            padding-bottom: 6px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .column-heading span {
-            color: var(--primarna-crvena);
-        }
-
-        .ticker-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .ticker-item {
-            padding: 12px 0;
-            border-bottom: 1px dashed var(--siva-linija);
-        }
-
-        .ticker-item:last-child {
-            border-bottom: none;
-        }
-
-        .ticker-time {
-            font-family: var(--font-naslovi);
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--primarna-crvena);
-            background-color: #ffebe6;
-            padding: 2px 6px;
-            border-radius: 3px;
-            margin-right: 8px;
-            display: inline-block;
-        }
-
-        .ticker-text {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--tamna-teget);
-        }
-
-        .ticker-item:hover .ticker-text {
-            color: var(--primarna-crvena);
-        }
+        .third-column { background-color: var(--cista-bela); border: 1px solid var(--siva-linija); padding: 16px; }
+        .column-heading { font-family: var(--font-naslovi); font-size: 18px; font-weight: 900; text-transform: uppercase; border-bottom: 3px solid var(--tamna-teget); padding-bottom: 6px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
+        .column-heading span { color: var(--primarna-crvena); }
+        .ticker-list { list-style: none; display: flex; flex-direction: column; }
+        .ticker-item { padding: 12px 0; border-bottom: 1px dashed var(--siva-linija); }
+        .ticker-item:last-child { border-bottom: none; }
+        .ticker-time { font-family: var(--font-naslovi); font-size: 12px; font-weight: 800; color: var(--primarna-crvena); background-color: #ffebe6; padding: 2px 6px; border-radius: 3px; margin-right: 8px; display: inline-block; }
+        .ticker-text { font-size: 14px; font-weight: 600; color: var(--tamna-teget); }
+        .ticker-item:hover .ticker-text { color: var(--primarna-crvena); }
     </style>
 </head>
 <body>
 
-    <!-- TAČKA 2: LOGO BLOK JE SADA SVEUKUPNI LINK KA INDEX.HTML -->
+    <!-- TAČKA 3: GORNJA BAR TRAKA ZA JEZIKE SA URADOM BEZ NAVODNIKA -->
+    <div class="top-language-bar">
+        <div class="lang-container">
+            <button class="lang-btn active" onclick="prebaciPismo('lat')">Lat</button>
+            <button class="lang-btn" onclick="prebaciPismo('cir')">Ћир</button>
+            <button class="lang-btn" onclick="prevediSajt('hu')">HU</button>
+            <button class="lang-btn" onclick="prevediSajt('ro')">RO</button>
+            <button class="lang-btn" onclick="prevediSajt('uk')">RSN</button> <!-- Rusinski se preko Google-a mapira kao uk/ru zbog dijalekta -->
+            <button class="lang-btn" onclick="prevediSajt('sk')">SK</button>
+            <button class="lang-btn" onclick="prevediSajt('hr')">HR</button>
+            <button class="lang-btn" onclick="prevediSajt('en')">ENG</button>
+        </div>
+    </div>
+
+    <!-- SKRIVENI FABRIČKI GOOGLE TRANSLATE ELEMENT -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <!-- LOGO BLOK -->
     <div class="brand-section">
         <a href="index.html" class="logo-link">
-            <div class="logo-main">Vona</div>
-            <div class="logo-subtitle">Vojvođanska Novinska Agencija</div>
+            <div class="logo-main" id="tekst-logo">Vona</div>
+            <div class="logo-subtitle" id="tekst-podnaslov">Vojvođanska Novinska Agencija</div>
         </a>
     </div>
 
@@ -405,12 +222,12 @@
     <nav>
         <div class="nav-container">
             <ul>
-                <li><a href="#">Društvo</a></li>
-                <li><a href="#">Politika</a></li>
-                <li><a href="#">Kultura</a></li>
-                <li><a href="#">Sport</a></li>
-                <li><a href="#">Hronika</a></li>
-                <li><a href="#">Svet</a></li>
+                <li><a href="#" class="prevod-kat">Društvo</a></li>
+                <li><a href="#" class="prevod-kat">Politika</a></li>
+                <li><a href="#" class="prevod-kat">Kultura</a></li>
+                <li><a href="#" class="prevod-kat">Sport</a></li>
+                <li><a href="#" class="prevod-kat">Hronika</a></li>
+                <li><a href="#" class="prevod-kat">Svet</a></li>
             </ul>
         </div>
     </nav>
@@ -418,8 +235,8 @@
     <!-- BREAKING NEWS TRAKA -->
     <div class="breaking-bar">
         <div class="breaking-container">
-            <div class="breaking-badge">Uživo</div>
-            <div class="breaking-text">Pratite najnovije zvanične izveštaje dopisnika Vojvođanske Novinske Agencije sa terena...</div>
+            <div class="breaking-badge" id="tekst-uzivo">Uživo</div>
+            <div class="breaking-text" id="tekst-traka">Pratite najnovije zvanične izveštaje dopisnika Vojvođanske Novinske Agencije sa terena...</div>
         </div>
     </div>
 
@@ -429,36 +246,36 @@
             <div class="slide-item active">
                 <img src="https://images.unsplash.com/photo-1546422904-90eab23c3d74?w=1000" alt="Glavna Vest 1">
                 <div class="slide-meta">
-                    <span class="category-tag">Politika</span>
-                    <h1 class="slide-title">Analiza VONA: Kakve ekonomske reforme očekuju region u narednom kvartalu?</h1>
+                    <span class="category-tag prevod-kat">Politika</span>
+                    <h1 class="slide-title trans-tekst">Analiza VONA: Kakve ekonomske reforme očekuju region u narednom kvartalu?</h1>
                 </div>
             </div>
             <div class="slide-item">
                 <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=1000" alt="Glavna Vest 2">
                 <div class="slide-meta">
-                    <span class="category-tag">Društvo</span>
-                    <h1 class="slide-title">Novi obrazovni centri u Vojvodini: Ulaganje u mlade talente i digitalnu budućnost</h1>
+                    <span class="category-tag prevod-kat">Društvo</span>
+                    <h1 class="slide-title trans-tekst">Novi obrazovni centri u Vojvodini: Ulaganje u mlade talente i digitalnu budućnost</h1>
                 </div>
             </div>
             <div class="slide-item">
                 <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1000" alt="Glavna Vest 3">
                 <div class="slide-meta">
-                    <span class="category-tag">Kultura</span>
-                    <h1 class="slide-title">Otvaranje jesenjeg salona umetnosti: Istaknuti stvaraoci okupljeni na jednom mestu</h1>
+                    <span class="category-tag prevod-kat">Kultura</span>
+                    <h1 class="slide-title trans-tekst">Otvaranje jesenjeg salona umetnosti: Istaknuti stvaraoci okupljeni na jednom mestu</h1>
                 </div>
             </div>
             <div class="slide-item">
                 <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1000" alt="Glavna Vest 4">
                 <div class="slide-meta">
-                    <span class="category-tag">Sport</span>
-                    <h1 class="slide-title">Spektakularna završnica prvenstva: Odlučujući bodovi osvojeni u poslednjoj sekundi</h1>
+                    <span class="category-tag prevod-kat">Sport</span>
+                    <h1 class="slide-title trans-tekst">Spektakularna završnica prvenstva: Odlučujući bodovi osvojeni u poslednjoj sekundi</h1>
                 </div>
             </div>
             <div class="slide-item">
                 <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=1000" alt="Glavna Vest 5">
                 <div class="slide-meta">
-                    <span class="category-tag">Hronika</span>
-                    <h1 class="slide-title">Vanredne ekipe uspešno sanirale posledice nevremena: Svi putevi prohodni</h1>
+                    <span class="category-tag prevod-kat">Hronika</span>
+                    <h1 class="slide-title trans-tekst">Vanredne ekipe uspešno sanirale posledice nevremena: Svi putevi prohodni</h1>
                 </div>
             </div>
             <div class="nav-dot-container">
@@ -476,8 +293,8 @@
                     <img src="https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?w=500" alt="Svet">
                 </div>
                 <div class="heute-card-body">
-                    <span class="category-tag">Svet</span>
-                    <h2 class="heute-card-title">Globalni klimatski samit doneo nove protokole za očuvanje energije</h2>
+                    <span class="category-tag prevod-kat">Svet</span>
+                    <h2 class="heute-card-title trans-tekst">Globalni klimatski samit doneo nove protokole za očuvanje energije</h2>
                 </div>
             </div>
             <div class="heute-card">
@@ -485,48 +302,60 @@
                     <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500" alt="Društvo">
                 </div>
                 <div class="heute-card-body">
-                    <span class="category-tag">Društvo</span>
-                    <h2 class="heute-card-title">Infrastrukturni projekti: Počinje izgradnja novog ekološkog parka</h2>
+                    <span class="category-tag prevod-kat">Društvo</span>
+                    <h2 class="heute-card-title trans-tekst">Infrastrukturni projekti: Počinje izgradnja novog ekološkog parka</h2>
                 </div>
             </div>
         </section>
 
         <aside class="third-column">
-            <h3 class="column-heading">Najnovije <span>Vesti</span></h3>
+            <h3 class="column-heading" id="tekst-desno-naslov">Najnovije <span>Vesti</span></h3>
             <ul class="ticker-list">
                 <li class="ticker-item">
                     <a href="#">
                         <span class="ticker-time">14:32</span>
-                        <span class="ticker-text">Završena regionalna konferencija o održivom razvoju poljoprivrede</span>
+                        <span class="ticker-text trans-tekst">Završena regionalna konferencija o održivom razvoju poljoprivrede</span>
                     </a>
                 </li>
                 <li class="ticker-item">
                     <a href="#">
                         <span class="ticker-time">14:15</span>
-                        <span class="ticker-text">Novi uspesi naših studenata na međunarodnom takmičenju u Beču</span>
+                        <span class="ticker-text trans-tekst">Novi uspesi naših studenata na međunarodnom takmičenju u Beču</span>
                     </a>
                 </li>
                 <li class="ticker-item">
                     <a href="#">
                         <span class="ticker-time">13:50</span>
-                        <span class="ticker-text">Hronika: Kontrola saobraćaja pojačana tokom predstojećeg vikenda</span>
+                        <span class="ticker-text trans-tekst">Hronika: Kontrola saobraćaja pojačana tokom predstojećeg vikenda</span>
                     </a>
                 </li>
                 <li class="ticker-item">
                     <a href="#">
                         <span class="ticker-time">13:10</span>
-                        <span class="ticker-text">Najavljena premijera nove domaće drame u bioskopima širom Vojvodine</span>
+                        <span class="ticker-text trans-tekst">Najavljena premijera nove domaće drame u bioskopima širom Vojvodine</span>
                     </a>
                 </li>
                 <li class="ticker-item">
                     <a href="#">
                         <span class="ticker-time">12:45</span>
-                        <span class="ticker-text">Kultura: Narodni muzej otvara vrata za posetioce tokom cele noći</span>
+                        <span class="ticker-text trans-tekst">Kultura: Narodni muzej otvara vrata za posetioce tokom cele noći</span>
                     </a>
                 </li>
             </ul>
         </aside>
     </main>
+
+    <!-- INICIJALIZACIJA GOOGLE TRANSLATE API-JA -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'sr',
+                includedLanguages: 'hu,ro,uk,sk,hr,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
         let currentIndex = 0;
@@ -555,15 +384,73 @@
 
         let slideInterval = setInterval(autoPlay, intervalTime);
 
-        // Skripta koja proverava login status admina
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
+        /* TAČKA 3: PROGRAMSKI AI TRANSLATOR KROZ GOOGLE VIDŽET */
+        function prevediSajt(kodJezika) {
+            // Aktiviramo Google Translate nevidljivi meni
+            const googleSelect = document.querySelector('.goog-te-combo');
+            if (googleSelect) {
+                googleSelect.value = kodJezika;
+                googleSelect.dispatchEvent(new Event('change'));
+            }
+        }
+
+        /* TAČKA 3: AUTOMATSKI PRESLOVLJIVAČ NA ĆIRILICU (MILISEDUNKDNI ENGINE) */
+        const mapaPreslovljavanja = {
+            'A': 'А', 'B': 'Б', 'V': 'В', 'G': 'Г', 'D': 'Д', 'Đ': 'Ђ', 'E': 'Е', 'Ž': 'Ж', 'Z': 'З', 'I': 'И', 'J': 'Ј', 'K': 'К', 'L': 'Л', 'M': 'М', 'N': 'Н', 'O': 'О', 'P': 'П', 'R': 'Р', 'S': 'С', 'T': 'Т', 'Ć': 'Ć', 'U': 'У', 'F': 'Ф', 'H': 'Х', 'C': 'Ц', 'Č': 'Ч', 'Dž': 'Џ', 'dž': 'џ', 'Š': 'Ш',
+            'a': 'а', 'b': 'б', 'v': 'в', 'g': 'г', 'd': 'д', 'đ': 'ђ', 'e': 'е', 'ž': 'ж', 'z': 'з', 'i': 'и', 'j': 'ј', 'k': 'к', 'l': 'л', 'm': 'м', 'n': 'н', 'o': 'о', 'p': 'п', 'r': 'р', 's': 'с', 't': 'т', 'ć': 'ћ', 'u': 'у', 'f': 'ф', 'h': 'х', 'c': 'ц', 'č': 'ч', 'š': 'ш', 'Lj': 'Љ', 'lj': 'љ', 'Nj': 'Њ', 'nj': 'њ'
+        };
+
+        // Čuvamo originalne tekstove na latinici da možemo da ih vratimo nazad na klik "Lat"
+        const izvorneVrednosti = {};
+
+        function sakupiIzvorneTekstove() {
+            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov');
+            elementi.forEach((el, index) => {
+                izvorneVrednosti[index] = el.innerHTML;
             });
+        }
+
+        window.onload = function() {
+            sakupiIzvorneTekstove();
+            if (window.netlifyIdentity) {
+                window.netlifyIdentity.on("init", user => { if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); } });
+            }
+        };
+
+        function konvertujULatinicu() {
+            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov');
+            elementi.forEach((el, index) => {
+                if(izvorneVrednosti[index]) el.innerHTML = izvorneVrednosti[index];
+            });
+        }
+
+        function konvertujUĆirilicicu() {
+            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov');
+            elementi.forEach((el) => {
+                let tekst = el.innerHTML;
+                // Zamena složenih slova (dž, lj, nj)
+                tekst = tekst.replace(/dž/g, 'џ').replace(/Dž/g, 'Џ').replace(/lj/g, 'љ').replace(/Lj/g, 'Љ').replace(/nj/g, 'њ').replace(/Nj/g, 'Њ');
+                // Zamena pojedinačnih slova
+                let noviTekst = "";
+                for (let i = 0; i < tekst.length; i++) {
+                    let slovo = tekst[i];
+                    noviTekst += mapaPreslovljavanja[slovo] ? mapaPreslovljavanja[slovo] : slovo;
+                }
+                el.innerHTML = noviTekst;
+            });
+        }
+
+        function prebaciPismo(pismo) {
+            // Menjamo aktivno dugme
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (pismo === 'cir') {
+                konvertujUĆirilicicu();
+            } else {
+                konvertujULatinicu();
+                prevediSajt('sr'); // Vraća na podrazumevani srpski latinični mod ako je bio uključen prevod
+            }
         }
     </script>
 </body>
