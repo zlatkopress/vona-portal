@@ -8,6 +8,9 @@
     <!-- Google Fontovi: Moderni, oštri sans-serif pogodan za novinske portale -->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- UKLJUČIVANJE IDENTITY IDENTIFIKACIJE (Potrebno za bezbedan ulazak u CMS admin panel) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <style>
         /* GLOBALNE PROMENLJIVE - Lako menjanje boja i dizajna naknadno */
         :root {
@@ -41,9 +44,8 @@
             transition: color 0.2s ease;
         }
 
-        /* TAČKA 1: LOGO BLOK SA NOVOM, STABILNOM FOTOGRAFIJOM VOJVOĐANSKIH NJIVA I RAVNICE */
+        /* TAČKA 1: LOGO BLOK SA PRIVREMENOM FOTOGRAFIJOM */
         .brand-section {
-            /* Dodat novi, ultra-stabilan link ka fotografiji ravnice */
             background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&q=80&w=1600');
             background-size: cover;
             background-position: center 30%;
@@ -51,10 +53,15 @@
             padding: 55px 20px 50px 20px;
             border-bottom: 1px solid var(--siva-linija);
             position: relative;
-            background-color: #2b3a4a; /* Rezervna tamna boja ako internet uspori */
+            background-color: #2b3a4a;
         }
 
-        /* TAČKA 1: REČ "VONA" BEZ CRVENE TAČKE SA JAKIM OUTLINE-OM */
+        /* TAČKA 2: LOGOTIP JE SADA KLIKABILAN LINK KOJI VODI NA POČETAK (index.html) */
+        .logo-link {
+            display: inline-block;
+            cursor: pointer;
+        }
+
         .logo-main {
             font-family: var(--font-naslovi);
             font-size: 68px;
@@ -63,11 +70,9 @@
             color: var(--cista-bela);
             line-height: 1;
             text-transform: uppercase;
-            /* Snažan okvir oko slova da tekst blješti preko slikovite pozadine */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0,0,0,0.8), 1px -1px 0 rgba(0,0,0,0.8), -1px 1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(0,0,0,0.8);
         }
 
-        /* TAČKA 1: PODNASLOV SA OKVIROM */
         .logo-subtitle {
             font-family: var(--font-naslovi);
             font-size: 15px;
@@ -388,10 +393,12 @@
 </head>
 <body>
 
-    <!-- LOGO BLOK SA NOVIM STABILNIM LINKOM ZA POZADINU -->
+    <!-- TAČKA 2: LOGO BLOK JE SADA SVEUKUPNI LINK KA INDEX.HTML -->
     <div class="brand-section">
-        <div class="logo-main">Vona</div>
-        <div class="logo-subtitle">Vojvođanska Novinska Agencija</div>
+        <a href="index.html" class="logo-link">
+            <div class="logo-main">Vona</div>
+            <div class="logo-subtitle">Vojvođanska Novinska Agencija</div>
+        </a>
     </div>
 
     <!-- MENI SA KATEGORIJAMA -->
@@ -547,6 +554,17 @@
         }
 
         let slideInterval = setInterval(autoPlay, intervalTime);
+
+        // Skripta koja proverava login status admina
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
     </script>
 </body>
 </html>
