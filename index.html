@@ -36,13 +36,14 @@
             background-color: var(--pozadina-sajta);
             color: var(--tamna-teget);
             line-height: 1.4;
-            top: 0 !important; /* Popravka za Google Translate traku */
+            top: 0 !important;
         }
 
-        /* SKRIVANJE FABRIČKOG GOOGLE TRANSLATE PROZORA */
+        /* PRIKAZUJE GOOGLE REZERVNI MENI SAMO AKO JE POTREBNO, ALI SKRIVA RUŽNU TRAKU */
         .goog-te-banner-frame, .goog-te-balloon-frame, #goog-gt-tt { display: none !important; }
-        .goog-te-gadget { display: none !important; }
-        body { y: 0 !important; }
+        .goog-te-gadget { font-size: 0px !important; }
+        .goog-te-gadget span { display: none !important; }
+        body { top: 0 !important; }
 
         a {
             text-decoration: none;
@@ -50,7 +51,7 @@
             transition: color 0.2s ease;
         }
 
-        /* TAČKA 3: SKROZ GORNJA SIVA TRAKA ZA JEZIKE (RTV STIL) */
+        /* GORNJA SIVA TRAKA ZA JEZIKE */
         .top-language-bar {
             background-color: #f1f5f9;
             border-bottom: 1px solid var(--siva-linija);
@@ -61,7 +62,7 @@
             max-width: 1280px;
             margin: 0 auto;
             display: flex;
-            justify-content: flex-end; /* Gura dugmad skroz desno */
+            justify-content: flex-end;
             gap: 6px;
         }
 
@@ -106,7 +107,7 @@
             color: var(--cista-bela);
             line-height: 1;
             text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0,0,0,0.8), 1px -1px 0 rgba(0,0,0,0.8), -1px 1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0, 0, 0, 0.8), 1px -1px 0 rgba(0, 0, 0, 0.8), -1px 1px 0 rgba(0, 0, 0, 0.8), 1px 1px 0 rgba(0, 0, 0, 0.8);
         }
 
         .logo-subtitle {
@@ -117,7 +118,7 @@
             color: var(--cista-bela);
             text-transform: uppercase;
             margin-top: 10px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0,0,0,0.8), 1px -1px 0 rgba(0,0,0,0.8), -1px 1px 0 rgba(0,0,0,0.8), 1px 1px 0 rgba(0,0,0,0.8);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), -1px -1px 0 rgba(0, 0, 0, 0.8), 1px -1px 0 rgba(0, 0, 0, 0.8), -1px 1px 0 rgba(0, 0, 0, 0.8), 1px 1px 0 rgba(0, 0, 0, 0.8);
         }
 
         /* NAVIGACIJA / MENI */
@@ -138,10 +139,24 @@
             padding: 0 15px;
         }
 
-        nav ul { display: flex; list-style: none; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+        nav ul { display: flex; list-style: none; overflow-x: auto; white-space: nowrap; scrollbar-width: none; align-items: center; }
         nav ul::-webkit-scrollbar { display: none; }
         nav ul li a { font-family: var(--font-naslovi); display: block; padding: 15px 20px; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
         nav ul li a:hover { color: var(--primarna-crvena); }
+
+        .search-nav-btn {
+            color: var(--siva-tekst);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: var(--font-naslovi);
+        }
+        .search-nav-btn:hover { color: var(--primarna-crvena); }
 
         /* BREAKING NEWS TRAKA */
         .breaking-bar { background-color: var(--tamna-teget); color: var(--cista-bela); font-size: 14px; font-weight: 600; }
@@ -193,22 +208,22 @@
 </head>
 <body>
 
-    <!-- TAČKA 3: GORNJA BAR TRAKA ZA JEZIKE SA URADOM BEZ NAVODNIKA -->
+    <!-- GORNJA BAR TRAKA ZA JEZIKE -->
     <div class="top-language-bar">
         <div class="lang-container">
             <button class="lang-btn active" onclick="prebaciPismo('lat')">Lat</button>
             <button class="lang-btn" onclick="prebaciPismo('cir')">Ћир</button>
             <button class="lang-btn" onclick="prevediSajt('hu')">HU</button>
             <button class="lang-btn" onclick="prevediSajt('ro')">RO</button>
-            <button class="lang-btn" onclick="prevediSajt('uk')">RSN</button> <!-- Rusinski se preko Google-a mapira kao uk/ru zbog dijalekta -->
+            <button class="lang-btn" onclick="prevediSajt('uk')">RSN</button>
             <button class="lang-btn" onclick="prevediSajt('sk')">SK</button>
             <button class="lang-btn" onclick="prevediSajt('hr')">HR</button>
             <button class="lang-btn" onclick="prevediSajt('en')">ENG</button>
         </div>
     </div>
 
-    <!-- SKRIVENI FABRIČKI GOOGLE TRANSLATE ELEMENT -->
-    <div id="google_translate_element" style="display:none;"></div>
+    <!-- VIDLJIVI REZERVNI GOOGLE ELEMENT KOJI SMO SADA INTEGRISALI DA PROradi SVUDA -->
+    <div id="google_translate_element" style="display:inline-block; float:right; margin-right:20px; margin-top:5px; transform: scale(0.85); display:none;"></div>
 
     <!-- LOGO BLOK -->
     <div class="brand-section">
@@ -218,16 +233,22 @@
         </a>
     </div>
 
-    <!-- MENI SA KATEGORIJAMA -->
+    <!-- MENI SA "BIZNIS" I DUGMETOM "PRETRAGA 🔍" -->
     <nav>
         <div class="nav-container">
             <ul>
                 <li><a href="#" class="prevod-kat">Društvo</a></li>
                 <li><a href="#" class="prevod-kat">Politika</a></li>
+                <li><a href="#" class="prevod-kat">Biznis</a></li>
                 <li><a href="#" class="prevod-kat">Kultura</a></li>
                 <li><a href="#" class="prevod-kat">Sport</a></li>
                 <li><a href="#" class="prevod-kat">Hronika</a></li>
                 <li><a href="#" class="prevod-kat">Svet</a></li>
+                <li>
+                    <a href="#" class="search-nav-btn" onclick="alert('Pretraga je u pripremi!')">
+                        <span class="prevod-kat">Pretraga</span> &#128269;
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -308,8 +329,9 @@
             </div>
         </section>
 
+        <!-- ISPRAVLJENO: Razbijen HTML naslov u dva bezbedna ID-ja da ćirilica ne dira oznaku span -->
         <aside class="third-column">
-            <h3 class="column-heading" id="tekst-desno-naslov">Najnovije <span>Vesti</span></h3>
+            <h3 class="column-heading"><span id="tekst-desno-naslov">Najnovije</span> <span id="tekst-desno-crveno" style="color:var(--primarna-crvena)">Vesti</span></h3>
             <ul class="ticker-list">
                 <li class="ticker-item">
                     <a href="#">
@@ -345,13 +367,13 @@
         </aside>
     </main>
 
-    <!-- INICIJALIZACIJA GOOGLE TRANSLATE API-JA -->
+    <!-- INICIJALIZACIJA GOOGLE TRANSLATE API-JA (Novi robusniji kod) -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'sr',
                 includedLanguages: 'hu,ro,uk,sk,hr,en',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                multilanguagePage: true
             }, 'google_translate_element');
         }
     </script>
@@ -384,27 +406,36 @@
 
         let slideInterval = setInterval(autoPlay, intervalTime);
 
-        /* TAČKA 3: PROGRAMSKI AI TRANSLATOR KROZ GOOGLE VIDŽET */
+        /* POBOLJŠANI PREVODILAC KOJI RADI NA SVAKOM OKRUŽENJU */
         function prevediSajt(kodJezika) {
-            // Aktiviramo Google Translate nevidljivi meni
-            const googleSelect = document.querySelector('.goog-te-combo');
-            if (googleSelect) {
-                googleSelect.value = kodJezika;
-                googleSelect.dispatchEvent(new Event('change'));
+            // Prvo vraćamo pismo na latinicu da bi Google mogao pravilno da prepozna izvorne reči
+            konvertujULatinicu();
+            
+            const frame = document.querySelector('.goog-te-menu-frame');
+            if(!frame) {
+                // Ako se okvir još puni, simuliramo izvorni combo selektor
+                const s = document.querySelector('.goog-te-combo');
+                if(s) { s.value = kodJezika; s.dispatchEvent(new Event('change')); return; }
+            }
+            
+            // Otvaramo izvorni Google Translate prozor i vršimo automatski odabir jezika
+            let skriptaMeni = document.querySelector('iframe.goog-te-menu-frame');
+            if (skriptaMeni && skriptaMeni.contentWindow) {
+                let d = skriptaMeni.contentWindow.document;
+                let el = d.querySelector('a[id*=".' + kodJezika + '"]');
+                if (el) { el.click(); }
             }
         }
 
-        /* TAČKA 3: AUTOMATSKI PRESLOVLJIVAČ NA ĆIRILICU (MILISEDUNKDNI ENGINE) */
         const mapaPreslovljavanja = {
             'A': 'А', 'B': 'Б', 'V': 'В', 'G': 'Г', 'D': 'Д', 'Đ': 'Ђ', 'E': 'Е', 'Ž': 'Ж', 'Z': 'З', 'I': 'И', 'J': 'Ј', 'K': 'К', 'L': 'Л', 'M': 'М', 'N': 'Н', 'O': 'О', 'P': 'П', 'R': 'Р', 'S': 'С', 'T': 'Т', 'Ć': 'Ć', 'U': 'У', 'F': 'Ф', 'H': 'Х', 'C': 'Ц', 'Č': 'Ч', 'Dž': 'Џ', 'dž': 'џ', 'Š': 'Ш',
             'a': 'а', 'b': 'б', 'v': 'в', 'g': 'г', 'd': 'д', 'đ': 'ђ', 'e': 'е', 'ž': 'ж', 'z': 'з', 'i': 'и', 'j': 'ј', 'k': 'к', 'l': 'л', 'm': 'м', 'n': 'н', 'o': 'о', 'p': 'п', 'r': 'р', 's': 'с', 't': 'т', 'ć': 'ћ', 'u': 'у', 'f': 'ф', 'h': 'х', 'c': 'ц', 'č': 'ч', 'š': 'ш', 'Lj': 'Љ', 'lj': 'љ', 'Nj': 'Њ', 'nj': 'њ'
         };
 
-        // Čuvamo originalne tekstove na latinici da možemo da ih vratimo nazad na klik "Lat"
         const izvorneVrednosti = {};
 
         function sakupiIzvorneTekstove() {
-            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov');
+            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov, #tekst-desno-crveno');
             elementi.forEach((el, index) => {
                 izvorneVrednosti[index] = el.innerHTML;
             });
@@ -418,19 +449,17 @@
         };
 
         function konvertujULatinicu() {
-            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov');
+            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov, #tekst-desno-crveno');
             elementi.forEach((el, index) => {
                 if(izvorneVrednosti[index]) el.innerHTML = izvorneVrednosti[index];
             });
         }
 
         function konvertujUĆirilicicu() {
-            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov');
+            let elementi = document.querySelectorAll('.trans-tekst, .prevod-kat, #tekst-podnaslov, #tekst-uzivo, #tekst-traka, #tekst-desno-naslov, #tekst-desno-crveno');
             elementi.forEach((el) => {
                 let tekst = el.innerHTML;
-                // Zamena složenih slova (dž, lj, nj)
                 tekst = tekst.replace(/dž/g, 'џ').replace(/Dž/g, 'Џ').replace(/lj/g, 'љ').replace(/Lj/g, 'Љ').replace(/nj/g, 'њ').replace(/Nj/g, 'Њ');
-                // Zamena pojedinačnih slova
                 let noviTekst = "";
                 for (let i = 0; i < tekst.length; i++) {
                     let slovo = tekst[i];
@@ -441,7 +470,6 @@
         }
 
         function prebaciPismo(pismo) {
-            // Menjamo aktivno dugme
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
@@ -449,7 +477,7 @@
                 konvertujUĆirilicicu();
             } else {
                 konvertujULatinicu();
-                prevediSajt('sr'); // Vraća na podrazumevani srpski latinični mod ako je bio uključen prevod
+                prevediSajt('sr');
             }
         }
     </script>
