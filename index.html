@@ -611,4 +611,28 @@
     });
   }
 </script>
+    <script>
+  // Skripta koja automatski vuče vesti iz _posts foldera i prikazuje ih na sajtu
+  async function ucitajVestiIzBaze() {
+    const korisnik = "zlatkopress"; // ZAMENI OVO SA SVOJIM GITHUB IMENOM!
+    const URL = `https://api.github.com/repos/${korisnik}/vona-portal/contents/_posts`;
+    
+    try {
+      const odgovor = await fetch(URL);
+      const fajlovi = await odgovor.json();
+      
+      if (!Array.isArray(fajlovi)) return;
+      
+      // Ovde čistimo stare fiksne vesti i ubacujemo prave iz baze
+      // Napomena: Sledeći korak kada vidimo strukturu će ovo povezati sa dizajnom.
+      console.log("Uspesno pronadjeno " + fajlovi.length + " vesti u bazi!");
+      
+    } catch (greshka) {
+      console.error("Greshka pri ucitavanju vesti:", greshka);
+    }
+  }
+  
+  // Pokreni ucitavanje čim se sajt otvori
+  document.addEventListener("DOMContentLoaded", ucitajVestiIzBaze);
+</script>
 </html>
