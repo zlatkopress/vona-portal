@@ -635,4 +635,52 @@
   // Pokreni ucitavanje čim se sajt otvori
   document.addEventListener("DOMContentLoaded", ucitajVestiIzBaze);
 </script>
+    <script>
+  // GLAVNA SKRIPTA ZA POVEZIVANJE VESTI SA DIZAJNOM Portal-a
+  async function ucitajSveVesti() {
+    const korisnik = "zlatkopress"; 
+    const repo = "vona-portal";
+    const URL = `https://api.github.com/repos/${korisnik}/${repo}/contents/_posts`;
+    
+    try {
+      const odgovor = await fetch(URL);
+      const fajlovi = await odgovor.json();
+      
+      if (!Array.isArray(fajlovi) || fajlovi.length === 0) return;
+      
+      // Uzimamo najnoviju vest (Baby Shark)
+      const najnovijiFajl = fajlovi[fajlovi.length - 1];
+      const sadrzajOdgovor = await fetch(najnovijiFajl.download_url);
+      const tekstFajla = await sadrzajOdgovor.text();
+      
+      // Čitanje podataka iz fajla
+      const naslovMec = tekstFajla.match(/title:\s*(.*)/);
+      const slikaMec = tekstFajla.match(/image:\s*(.*)/);
+      const opisMec = tekstFajla.match(/description:\s*(.*)/);
+      
+      const naslov = naslovMec ? naslovMec[1].replace(/['"]/g, '') : "Nova Vest";
+      const slika = slikaMec ? slikaMec[1].replace(/['"]/g, '') : "assets/img/blog/blog-1.jpg";
+      const opis = opisMec ? opisMec[1].replace(/['"]/g, '') : "Kliknite za detalje vesti.";
+      
+      // Menjamo prvu veliku vest u slajderu i glavnoj sekciji
+      const glavniNaslovi = document.querySelectorAll('.post-entry-1 h2 a, .post-entry-1 h3 a, .hero-slider .title a');
+      glavniNaslovi.forEach(el => el.textContent = naslov);
+      
+      const glavniOpisi = document.querySelectorAll('.post-entry-1 p, .hero-slider .description');
+      glavniOpisi.forEach(el => el.textContent = opis);
+      
+      const glavneSlike = document.querySelectorAll('.post-entry-1 img, .hero-slider img');
+      glavneSlike.forEach(el => {
+        if(el) el.src = slika;
+      });
+
+      console.log("Portal uspesno osvezen sa najnovijom vescu: " + naslov);
+      
+    } catch (greshka) {
+      console.error("Greska pri osvezavanju portala:", greshka);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", ucitajSveVesti);
+</script>
 </html>
