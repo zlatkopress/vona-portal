@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "assets/images" # Mesto gde će se čuvati slike koje ubaciš iz CMS-a
+media_folder: "assets/images"
 public_folder: "/assets/images"
 
 collections:
@@ -15,6 +15,8 @@ collections:
       - {label: "Naslov Vesti", name: "title", widget: "string"}
       - {label: "Datum objave", name: "date", widget: "datetime"}
       - {label: "Kategorija", name: "category", widget: "select", options: ["Društvo", "Politika", "Biznis", "Kultura", "Sport", "Hronika", "Svet"]}
-      - {label: "Glavna Vest (Slajder)", name: "glavna", widget: "boolean", default: false}
+      # TAČKA 8: Kontrola za slajder - administrator štiklira da li vest ide na vrh u vrtuljak
+      - {label: "Prikaži u glavnom slajderu (Vrtuljak od 5 vesti)", name: "glavna", widget: "boolean", default: false}
       - {label: "Istaknuta slika", name: "image", widget: "image"}
+      - {label: "Kratak opis za slajder/karticu", name: "description", widget: "string"}
       - {label: "Tekst Vesti", name: "body", widget: "markdown"}
