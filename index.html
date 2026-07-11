@@ -684,3 +684,52 @@
   document.addEventListener("DOMContentLoaded", ucitajSveVesti);
 </script>
 </html>
+
+<script>
+  // NAJNOVIJA POPRAVLJENA SKRIPTA ZA BABY SHARK I SVE BUDUĆE VESTI
+  async function ucitajSveVesti() {
+    const korisnik = "zlatkopress"; 
+    const repo = "vona-portal";
+    const URL = `https://api.github.com/repos/${korisnik}/${repo}/contents/_posts`;
+    
+    try {
+      const odgovor = await fetch(URL);
+      const fajlovi = await odgovor.json();
+      
+      if (!Array.isArray(fajlovi) || fajlovi.length === 0) return;
+      
+      const najnovijiFajl = fajlovi[fajlovi.length - 1];
+      const sadrzajOdgovor = await fetch(najnovijiFajl.download_url);
+      const tekstFajla = await sadrzajOdgovor.text();
+      
+      let naslov = "Nova Vest";
+      let slika = "assets/img/blog/blog-1.jpg";
+      let opis = "Kliknite za detalje vesti.";
+      
+      const linije = tekstFajla.split('\n');
+      linije.forEach(linija => {
+        if (linija.startsWith('title:')) naslov = linija.replace('title:', '').trim();
+        if (linija.startsWith('image:')) slika = linija.replace('image:', '').trim();
+        if (linija.startsWith('description:')) opis = linija.replace('description:', '').trim();
+      });
+      
+      const glavniNaslovi = document.querySelectorAll('.post-entry-1 h2 a, .post-entry-1 h3 a, .hero-slider .title a, .featured-post .title a');
+      glavniNaslovi.forEach(el => el.textContent = naslov);
+      
+      const glavniOpisi = document.querySelectorAll('.post-entry-1 p, .hero-slider .description, .featured-post p');
+      glavniOpisi.forEach(el => el.textContent = opis);
+      
+      const glavneSlike = document.querySelectorAll('.post-entry-1 img, .hero-slider img, .featured-post img');
+      glavneSlike.forEach(el => {
+        if(el) el.src = slika;
+      });
+
+      console.log("Portal uspesno osvezen! Prikazana vest: " + naslov);
+      
+    } catch (greshka) {
+      console.error("Greska pri osvezavanju portala:", greshka);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", ucitajSveVesti);
+</script>
